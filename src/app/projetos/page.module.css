@@ -8,6 +8,18 @@
   margin-top: 100px;
 }
 
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .projects{
   width: 100%;
   max-width: 100%;

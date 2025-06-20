@@ -2,14 +2,18 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './Menu.module.scss';
 import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
+import { useLoadingState } from '../hooks/useLoadingState';
 
 export function Menu() {
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const router = useRouter();
+    const { isLoading } = useLoadingState();
     
     const menuItems = [
         { name: 'Home', path: '/home' },
@@ -25,22 +29,46 @@ export function Menu() {
             duration: 1,
             ease: "power2.out"
         });
-    }, []);
+    }, [isLoading]);
+
+    const handleNavigation = (path: string) => {
+        setIsOpen(false);
+        
+        // Se for o currículo, abre em nova aba
+        if (path === '/cv25.pdf') {
+            window.open(path, '_blank');
+            return;
+        }
+        
+        // Para outras páginas, verifica se já estamos na mesma página
+        if (pathname === path) {
+            // Se já estamos na mesma página, força um refresh
+            window.location.href = path;
+        } else {
+            // Se for uma página diferente, usa o router
+            window.location.href = path;
+        }
+    };
+
+    // Se isLoading for true, retorna null
+    if (isLoading) {
+        return null;
+    }
 
     return (
         <nav ref={menuRef} className={styles.nav}>
             <div className={styles.menuDesktop}>
                 {menuItems.map((item) => (
-                    <Link
+                    <button
                         key={item.path}
-                        href={item.path}
+                        onClick={() => handleNavigation(item.path)}
                         className={
                             `${styles.menuItem} ` +
                             (pathname.startsWith(item.path) ? styles.active : '')
                         }
                     >
                         {item.name}
-                    </Link>
+                    </button>
                 ))}
             </div>
             <button
@@ -54,14 +82,13 @@ export function Menu() {
             {isOpen && (
                 <div className={styles.menuMobile}>
                     {menuItems.map((item) => (
-                        <Link
+                        <button
                             key={item.path}
-                            href={item.path}
+                            onClick={() => handleNavigation(item.path)}
                             className={styles.menuItem}
-                            onClick={() => setIsOpen(false)}
                         >
                             {item.name}
-                        </Link>
+                        </button>
                     ))}
                 </div>
             )}

@@ -1,18 +1,58 @@
+'use client';
+
 import Link from "next/link";
 import styles from "./page.module.css";
 import ProjectCard from "@/app/components/ProjectCard";
 import { Contato } from "../components/Contato";
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { useLoadingState } from "../hooks/useLoadingState";
 
 export default function Home() {
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { isLoading } = useLoadingState();
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+    tl.from(projectsRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out"
+    })
+    .from(titleRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.2")
+    .from(descriptionRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.5")
+    .from(containerRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.5");
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <div className={styles.projects}>
+    <div className={`${styles.page} ${isLoading ? styles.hidden : styles.visible}`}>
+      <div className={styles.projects} ref={projectsRef}>
         <div className={styles.project}>
-          <h2 className={styles.projectsTitle}>Meus projetos</h2>
-          <p className={styles.projectsDescription}>
+          <h2 className={styles.projectsTitle} ref={titleRef}>Meus projetos</h2>
+          <p className={styles.projectsDescription} ref={descriptionRef}>
             Aqui está um pouco dos meus projetos mais recentes. Cada um deles reflete meu foco em soluções centradas no usuário e meu compromisso com a excelência em performance, segurança e resultados reais para o negócio.
           </p>
-          <div className={styles.projectsContainer}>
+          <div className={styles.projectsContainer} ref={containerRef}>
             <ProjectCard
               title="IA CHAT"
               subtitle="2025 - Full Stack"
