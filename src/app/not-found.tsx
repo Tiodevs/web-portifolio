@@ -1,11 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
 import gsap from 'gsap';
 import styles from './not-found.module.scss';
 
+import { useLoadingState } from '../hooks/useLoadingState';
+
 export default function NotFound() {
+
+    const {isLoading} = useLoadingState();
+
     useEffect(() => {
         gsap.from('.error-content', {
             y: 50,
@@ -16,15 +20,15 @@ export default function NotFound() {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${isLoading ? styles.hidden : styles.visible}`}>
             <div className={`${styles.content} error-content`}>
                 <h2 className={styles.subtitle}>Página não encontrada</h2>
                 <p className={styles.description}>
-                    Ops! Parece que você se perdeu no espaço digital.
+                    Caso queira voltar para a página inicial, clique no botão abaixo.
                 </p>
-                <Link href="/home" className={styles.button}>
+                <a href="/home" className={styles.button}>
                     Voltar para Home
-                </Link>
+                </a>
             </div>
         </div>
     );

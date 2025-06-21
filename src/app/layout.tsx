@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Manrope, Inter, Sora } from "next/font/google";
 import "./globals.css";
-import { Menu } from "./components/Menu";
-import CustomCursor from "./components/CustomCursor";
-import { LoadingOverlay } from "./components/LoadingOverlay";
-import { ContentWrapper } from "./components/ContentWrapper";
+import { Menu } from "../components/Menu/Menu";
+import CustomCursor from "../components/CustomCursor/CustomCursor";
+import { LoadingOverlay } from "../components/LoadingOverlay/LoadingOverlay";
 const manrope = Manrope({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });

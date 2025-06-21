@@ -1,18 +1,18 @@
 'use client';
 
-import Link from "next/link";
 import styles from "./page.module.css";
-import ProjectCard from "@/app/components/ProjectCard";
-import { Contato } from "../components/Contato";
+import ProjectCard from "@/components/Projetos/ProjectCard";
+import { Contato } from "../../components/Contato/Contato";
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useLoadingState } from "../hooks/useLoadingState";
+import { useLoadingState } from "../../hooks/useLoadingState";
 
 export default function Home() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
   const { isLoading } = useLoadingState();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Home() {
       duration: 0.8,
       ease: "power2.out"
     }, "-=0.5");
-  }, []);
+  }, [isLoading]);
 
   return (
     <div className={`${styles.page} ${isLoading ? styles.hidden : styles.visible}`}>
@@ -69,8 +69,6 @@ export default function Home() {
               link="/projetos/02"
               linksgit="/"
             />
-
-
           </div>
 
 

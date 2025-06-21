@@ -3,15 +3,15 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import Image from "next/image";
-import ProjectCard from '../components/ProjectCard';
-import { HabilidadesList } from '../components/HabilidadesList';
-import { ExperienciaItem } from '../components/ExperienciaItem';
-import { Contato } from '../components/Contato';
-import { CertificadoItem } from '../components/CertificadoItem';
-import CustomCursor from '../components/CustomCursor';
+import ProjectCard from '../../components/Projetos/ProjectCard';
+import { HabilidadesList } from '../../components/Habilidades/HabilidadesList';
+import { ExperienciaItem } from '../../components/ExperiencialItem/ExperienciaItem';
+import { Contato } from '../../components/Contato/Contato';
+import { CertificadoItem } from '../../components/Certificados/CertificadoItem';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useLoadingState } from "../../hooks/useLoadingState";
 
 export default function Home() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -22,9 +22,9 @@ export default function Home() {
   const buttonTextRef = useRef<HTMLSpanElement>(null);
   const buttonTextRef2 = useRef<HTMLSpanElement>(null);
 
+  const { isLoading } = useLoadingState();
+
   useEffect(() => {
-    // Pequeno delay para garantir que o loading tenha terminado
-    const timer = setTimeout(() => {
       const tl = gsap.timeline();
 
       tl.from(headerRef.current, {
@@ -59,7 +59,6 @@ export default function Home() {
         clearProps: "all"
       }, "-=0.9");
 
-      // Configuração inicial do texto de substituição
       if (buttonTextRef2.current) {
         gsap.set(buttonTextRef2.current, {
           y: '100%',
@@ -98,13 +97,11 @@ export default function Home() {
           buttonTl.reverse();
         });
       }
-    }, 1200); // Delay um pouco maior que o tempo do loading
-
-    return () => clearTimeout(timer);
+    
   }, []);
   
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${isLoading ? styles.hidden : styles.visible}`}>
       <div className={styles.header} ref={headerRef}>
         <div ref={imageRef} className={styles.image}>
           <Image

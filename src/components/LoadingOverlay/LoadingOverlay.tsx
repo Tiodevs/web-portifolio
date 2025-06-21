@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useLoadingState } from '../hooks/useLoadingState';
+import { useLoadingState } from '../../hooks/useLoadingState';
 import styles from './LoadingOverlay.module.scss';
 
 export function LoadingOverlay() {

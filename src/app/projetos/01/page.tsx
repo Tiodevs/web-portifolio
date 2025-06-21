@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
-import ProjectCard from "@/app/components/ProjectCard";
-import { Contato } from "@/app/components/Contato";
-import { HabilidadesList } from "@/app/components/HabilidadesList";
+import ProjectCard from "@/components/Projetos/ProjectCard";
+import { Contato } from "@/components/Contato/Contato";
+import { HabilidadesList } from "@/components/Habilidades/HabilidadesList";
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 

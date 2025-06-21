@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import styles from './Menu.module.scss';
 import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
-import { useLoadingState } from '../hooks/useLoadingState';
+import { useLoadingState } from '../../hooks/useLoadingState';
 
 export function Menu() {
     const [isOpen, setIsOpen] = useState(false);

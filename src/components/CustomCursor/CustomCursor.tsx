@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { useLoadingState } from '../hooks/useLoadingState';
+import { useLoadingState } from '../../hooks/useLoadingState';
 
 // Função para renderizar texto circular
 function CircularText({
