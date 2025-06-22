@@ -27,7 +27,8 @@ export function Menu() {
             y: -50,
             opacity: 0,
             duration: 1,
-            ease: "power2.out"
+            ease: "power2.out",
+            delay: 1
         });
     }, [isLoading]);
 

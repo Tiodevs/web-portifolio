@@ -14,7 +14,7 @@
   margin: 0;
   scroll-behavior: smooth;
   
-  cursor: none;
+  /* cursor: none; */
 }
 
 body {

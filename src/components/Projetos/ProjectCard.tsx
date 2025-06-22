@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, subtitle, description, image, link, linksgit }: ProjectCardProps) {
     return (
-        <div className={styles.card}>
+        <div className={`${styles.card} project-card-item`}>
             <div className={styles.info}>
                 <div className={styles.infoText}>
                     <h3>{title}</h3>

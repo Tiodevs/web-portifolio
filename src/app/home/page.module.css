@@ -121,6 +121,7 @@
   }
 }
 
+
 .projects {
   width: 100%;
   max-width: 100%;
@@ -129,6 +130,18 @@
   align-items: start;
   gap: 10px;
   margin-top: 180px;
+  position: relative;
+
+  .projectsHeader {
+    background: var(--preto);
+    width: 100%;
+    z-index: 100;
+  }
+
+  .projectsContainer {
+    position: relative;
+    width: 100%;
+  }
 
   .projectsTitle {
     font-size: 40px;
@@ -314,13 +327,13 @@
       }
 
       p {
-        font-size: 18px;
-        line-height: 1.3;
+        font-size: 16px;
+        line-height: 1.2;
       }
 
       .buttonheader {
         padding: 13px 25px;
-        font-size: 15px;
+        font-size: 14px;
       }
     }
   }
@@ -332,10 +345,27 @@
     }
 
     .projectsDescription {
-      font-size: 17px;
+      font-size: 16px;
+        line-height: 1.2;
       margin-bottom: 30px;
     }
   }
+
+  .habilidades {
+    .habilidadesTitle {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+  }
+
+  .experiencias {
+    .experienciasTitle {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+  }
+  
 }
 
 @media (max-width: 768px) {

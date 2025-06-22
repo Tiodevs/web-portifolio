@@ -11,7 +11,11 @@ import { CertificadoItem } from '../../components/Certificados/CertificadoItem';
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { useLoadingState } from "../../hooks/useLoadingState";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -21,67 +25,78 @@ export default function Home() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const buttonTextRef = useRef<HTMLSpanElement>(null);
   const buttonTextRef2 = useRef<HTMLSpanElement>(null);
+  
+  // Refs para a seção de projetos
+  const projectsHeaderRef = useRef<HTMLDivElement>(null);
 
   const { isLoading } = useLoadingState();
 
   useEffect(() => {
-      const tl = gsap.timeline();
+    const tl = gsap.timeline();
 
-      tl.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      })
+    // Animação do header
+    gsap.set([titleRef.current, textRef.current, buttonRef.current], {
+      opacity: 0,
+      y: 30
+    });
+
+    // Animação do header
+    tl.from(headerRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out"
+    })
       .from(imageRef.current, {
         y: 30,
+        scale: 5,
         opacity: 0,
-        duration: 0.8,
+        duration: 1.5,
         ease: "power2.out"
-      }, "-=0.5")
-      .from(titleRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      .from(textRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      .from(buttonRef.current, {
-        y: 30,
-        opacity: 0,
+      }, "-=0.8")
+      .to(titleRef.current, {
+        y: 0,
+        opacity: 1,
         duration: 0.8,
         ease: "power2.out",
-        clearProps: "all"
-      }, "-=0.9");
+        delay: 1
+      })
+      .to(textRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      }, "-=0.4")
+      .to(buttonRef.current, {
+        y: 0,
+        opacity: 1, 
+        duration: 0.1,
+        ease: "power2.out",
+        clearProps: "all",
+      }, "-=0.4");
 
-      if (buttonTextRef2.current) {
-        gsap.set(buttonTextRef2.current, {
-          y: '100%',
-          rotationX: -90,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          opacity: 1,
-          pointerEvents: 'none'
-        });
-      }
+    // Configurações do botão CV
+    gsap.set(buttonTextRef2.current, {
+      y: '100%',
+      rotationX: -90,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      opacity: 1,
+      pointerEvents: 'none'
+    });
 
-      // Adiciona a animação de hover
-      if (buttonRef.current && buttonTextRef.current && buttonTextRef2.current) {
-        const buttonTl = gsap.timeline({ paused: true });
+    // Adiciona a animação de hover
+    if (buttonRef.current && buttonTextRef.current && buttonTextRef2.current) {
+      const buttonTl = gsap.timeline({ paused: true });
 
-        buttonTl.to(buttonTextRef.current, {
-          duration: 0.5,
-          y: '-100%',
-          rotationX: 90,
-          ease: 'power2.inOut'
-        })
+      buttonTl.to(buttonTextRef.current, {
+        duration: 0.5,
+        y: '-100%',
+        rotationX: 90,
+        ease: 'power2.inOut'
+      })
         .to(buttonTextRef2.current, {
           duration: 0.5,
           y: '0%',
@@ -89,17 +104,79 @@ export default function Home() {
           ease: 'power2.inOut'
         }, '<');
 
-        buttonRef.current.addEventListener('mouseenter', () => {
-          buttonTl.play();
-        });
+      buttonRef.current.addEventListener('mouseenter', () => {
+        buttonTl.play();
+      });
 
-        buttonRef.current.addEventListener('mouseleave', () => {
-          buttonTl.reverse();
-        });
-      }
-    
+      buttonRef.current.addEventListener('mouseleave', () => {
+        buttonTl.reverse();
+      });
+    }
+
+
+  }, [ isLoading ]);
+
+  useEffect(() => {
+      // Animação dos projetos com cabeçalho fixo
+      const timer = setTimeout(() => {
+        console.log('Iniciando animação dos projetos...');
+        
+        const projectCards = gsap.utils.toArray<HTMLElement>('.project-card-item');
+        console.log('Cards encontrados:', projectCards.length);
+        
+        if (projectCards.length > 0) {
+          console.log('Criando ScrollTrigger...');
+          
+          // Efeito de acordeão nos cards
+          projectCards.forEach((card, index) => {
+            const isLast = index === projectCards.length - 1;
+            const isFirst = index === 0;
+            
+            // Define posição inicial dos cards
+            gsap.set(card, {
+              zIndex: projectCards.length + index,
+              position: 'sticky',
+              top: `${100 + (index * 10)}px`, // Mais espaçamento entre cards
+            });
+
+            if (isFirst) {
+              gsap.set(card, {
+                y: 100,
+              });
+            }
+            
+            
+            // Animação de entrada suave para cada card
+            gsap.fromTo(card, 
+              {
+                y: 150,
+              },
+              {
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top 70%',
+                  end: 'top 100%',
+                  scrub: false,
+                  markers: false,
+                }
+              }
+            );
+          });
+        }
+      }, 500);
+
+
+    return () => {
+      clearTimeout(timer);
+      // Limpa todos os ScrollTriggers quando o componente desmonta
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
-  
+
+
   return (
     <div className={`${styles.page} ${isLoading ? styles.hidden : styles.visible}`}>
       <div className={styles.header} ref={headerRef}>
@@ -116,24 +193,23 @@ export default function Home() {
           <h1 ref={titleRef}>Olá, eu sou o Felipe</h1>
           <p ref={textRef}>Sou um desenvolvedor Full Stack apaixonado por criar soluções digitais robustas, seguras e inteligentes. Utilizo tecnologias modernas — incluindo inteligência artificial — para desenvolver produtos que geram retorno financeiro e entregam experiências excepcionais ao usuário.</p>
 
-          <a 
-            ref={buttonRef} 
-            className={styles.buttonheader} 
-            href="/cv25.pdf" 
-            download
+          <a
+            ref={buttonRef}
+            className={styles.buttonheader}
+            href="/cv25.pdf"
           >
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-              <span 
+              <span
                 className={styles.buttonText1}
                 ref={buttonTextRef}
               >
                 Baixar currículo
               </span>
-              <span 
+              <span
                 ref={buttonTextRef2}
                 className={styles.buttonText2}
               >
-                Obrigado :D
+                Baixar agora
               </span>
             </div>
           </a>
@@ -142,11 +218,29 @@ export default function Home() {
 
       <div className={styles.projects}>
         <div className={styles.project}>
-          <h2 className={styles.projectsTitle}>Meus projetos</h2>
-          <p className={styles.projectsDescription}>
-            Aqui está um pouco dos meus projetos mais recentes. Cada um deles reflete meu foco em soluções centradas no usuário e meu compromisso com a excelência em performance, segurança e resultados reais para o negócio.
-          </p>
+          <div ref={projectsHeaderRef} className={styles.projectsHeader}>
+            <h2 className={styles.projectsTitle}>Meus projetos</h2>
+            <p className={styles.projectsDescription}>
+              Aqui está um pouco dos meus projetos mais recentes. Cada um deles reflete meu foco em soluções centradas no usuário e meu compromisso com a excelência em performance, segurança e resultados reais para o negócio.
+            </p>
+          </div>
           <div className={styles.projectsContainer}>
+            <ProjectCard
+              title="IA CHAT"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
+              image="/projcts/01/capa01.png"
+              link="/projetos/01"
+              linksgit="/"
+            />
+            <ProjectCard
+              title="Site de links"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi um site de links para um a ASSUMTEK, com um design moderno e responsivo. O site foi criado com Next.js e node.js, uma interface de adiministração para gerenciar os links e um painel de controle para gerenciar o site."
+              image="/projcts/02/Capa01.png"
+              link="/projetos/02"
+              linksgit="/"
+            />
             <ProjectCard
               title="IA CHAT"
               subtitle="2025 - Full Stack"
@@ -178,12 +272,12 @@ export default function Home() {
           <HabilidadesList
             titulo="Frontend"
             habilidades={[
-              "HTML",
-              "CSS",
-              "JavaScript",
-              "Typescript",
-              "React",
-              "Next.js",
+              { nome: "HTML", imagem: "/icon/html5-original.svg", altImagem: "HTML5" },
+              { nome: "CSS", imagem: "/icon/css3-original.svg", altImagem: "CSS3" },
+              { nome: "JavaScript", imagem: "/icon/javascript-original.svg", altImagem: "JavaScript" },
+              { nome: "TypeScript", imagem: "/icon/typescript-original.svg", altImagem: "TypeScript" },
+              { nome: "React", imagem: "/icon/react-original.svg", altImagem: "React" },
+              { nome: "Next.js", imagem: "/icon/nextjs-original.svg", altImagem: "Next.js" },
               "Figma",
               "SCSS",
               "Vercel",
@@ -197,7 +291,7 @@ export default function Home() {
           <HabilidadesList
             titulo="Backend"
             habilidades={[
-              "Node.js",
+              { nome: "Node.js", imagem: "/iconGit.svg", altImagem: "Node.js" },
               "Express",
               "Prisma",
               "PostgreSQL",
@@ -207,8 +301,8 @@ export default function Home() {
               "Docker",
               "AWS",
               "CI/CD",
-              "Git",
-              "GitHub",
+              { nome: "Git", imagem: "/iconGit.svg", altImagem: "Git" },
+              { nome: "GitHub", imagem: "/iconGit.svg", altImagem: "GitHub" },
               "Desenvolvimento de IA",
             ]}
             habilidadeDestaque="Node.js"
