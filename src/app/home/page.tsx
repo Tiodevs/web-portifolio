@@ -278,12 +278,10 @@ export default function Home() {
               { nome: "TypeScript", imagem: "/icon/typescript-original.svg", altImagem: "TypeScript" },
               { nome: "React", imagem: "/icon/react-original.svg", altImagem: "React" },
               { nome: "Next.js", imagem: "/icon/nextjs-original.svg", altImagem: "Next.js" },
-              "Figma",
-              "SCSS",
-              "Vercel",
+              { nome: "Figma", imagem: "/icon/figma-original.svg", altImagem: "Figma" },
+              {nome: "Vercel", imagem: "/icon/vercel-original.svg", altImagem: "Vercel"},
+              {nome: "Axios", imagem: "/icon/axios-plain.svg", altImagem: "Axios"},
               "GSAP",
-              "Axios",
-              "NextAuth",
               "SEO",
             ]}
             habilidadeDestaque="Next.js"
