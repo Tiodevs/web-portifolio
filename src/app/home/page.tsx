@@ -129,7 +129,6 @@ export default function Home() {
           
           // Efeito de acordeão nos cards
           projectCards.forEach((card, index) => {
-            const isLast = index === projectCards.length - 1;
             const isFirst = index === 0;
             
             // Define posição inicial dos cards
@@ -141,12 +140,30 @@ export default function Home() {
 
             if (isFirst) {
               gsap.set(card, {
-                y: 100,
+                y: 0,
               });
-            }
-            
-            
-            // Animação de entrada suave para cada card
+
+              // Animação de entrada suave para cada card
+            gsap.fromTo(card, 
+              {
+                y: 0,
+              },
+              {
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top 70%',
+                  end: 'top 100%',
+                  scrub: false,
+                  markers: false,
+                }
+              }
+            );
+            } else {
+
+              // Animação de entrada suave para cada card
             gsap.fromTo(card, 
               {
                 y: 150,
@@ -164,6 +181,11 @@ export default function Home() {
                 }
               }
             );
+              
+            }
+            
+            
+            
           });
         }
       }, 500);
@@ -294,8 +316,8 @@ export default function Home() {
               { nome: "Prisma", imagem: "/icons/prisma-original.svg", altImagem: "Prisma" },
               { nome: "PostgreSQL", imagem: "/icons/postgresql-original.svg", altImagem: "PostgreSQL" },
               { nome: "Railway", imagem: "/icons/railway-original.svg", altImagem: "Railway" },
-              { nome: "Git", imagem: "/icons/git-original.svg", altImagem: "Git" },
-              { nome: "GitHub", imagem: "/icons/github-original.svg", altImagem: "GitHub" },
+              { nome: "Git", imagem: "/iconGit.svg", altImagem: "Git" },
+              { nome: "GitHub", imagem: "/iconGit.svg", altImagem: "GitHub" },
               { nome: "Supabase", imagem: "/icons/supabase-original.svg", altImagem: "Supabase" },
               { nome: "Docker", imagem: "/icons/docker-original.svg", altImagem: "Docker" },
               "Yup",
