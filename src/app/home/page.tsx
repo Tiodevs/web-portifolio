@@ -289,18 +289,18 @@ export default function Home() {
           <HabilidadesList
             titulo="Backend"
             habilidades={[
-              { nome: "Node.js", imagem: "/iconGit.svg", altImagem: "Node.js" },
-              "Express",
-              "Prisma",
-              "PostgreSQL",
-              "Railway",
-              "Supabase",
-              "Yup",
-              "Docker",
-              "AWS",
-              "CI/CD",
+              { nome: "Node.js", imagem: "/icon/nodejs-original.svg", altImagem: "Node.js" },
+              { nome: "Express", imagem: "/icon/express-original.svg", altImagem: "Express" },
+              { nome: "Prisma", imagem: "/icon/prisma-original.svg", altImagem: "Prisma" },
+              { nome: "PostgreSQL", imagem: "/icon/postgresql-original.svg", altImagem: "PostgreSQL" },
+              { nome: "Railway", imagem: "/icon/railway-original.svg", altImagem: "Railway" },
               { nome: "Git", imagem: "/iconGit.svg", altImagem: "Git" },
               { nome: "GitHub", imagem: "/iconGit.svg", altImagem: "GitHub" },
+              { nome: "Supabase", imagem: "/icon/supabase-original.svg", altImagem: "Supabase" },
+              { nome: "Docker", imagem: "/icon/docker-original.svg", altImagem: "Docker" },
+              "Yup",
+              "AWS",
+              "CI/CD",
               "Desenvolvimento de IA",
             ]}
             habilidadeDestaque="Node.js"
