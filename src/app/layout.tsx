@@ -7,9 +7,18 @@ import { LoadingOverlay } from "../components/LoadingOverlay/LoadingOverlay";
 import "./globals.css";
 
 import { Manrope, Inter, Sora } from "next/font/google";
-const manrope = Manrope({ subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"] });
-const sora = Sora({ subsets: ["latin"] });
+const manrope = Manrope({ 
+  subsets: ["latin"],
+  variable: '--font-manrope'
+});
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: '--font-inter'
+});
+const sora = Sora({ 
+  subsets: ["latin"],
+  variable: '--font-sora'
+});
 
 export const metadata: Metadata = {
   title: "Felipe Santos - Portfólio",
@@ -41,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${manrope.className} ${inter.className} ${sora.className}`}>
+      <body className={`${manrope.variable} ${inter.variable} ${sora.variable}`}>
         <LoadingOverlay />
         <CustomCursor/>
         <Menu />

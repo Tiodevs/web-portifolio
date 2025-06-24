@@ -14,7 +14,7 @@ export function Menu() {
     const pathname = usePathname();
     const router = useRouter();
     const { isLoading } = useLoadingState();
-    
+
     const menuItems = [
         { name: 'Home', path: '/home' },
         { name: 'Projetos', path: '/projetos' },
@@ -28,19 +28,19 @@ export function Menu() {
             opacity: 0,
             duration: 1,
             ease: "power2.out",
-            delay: 1
+            delay: 1.5
         });
     }, [isLoading]);
 
     const handleNavigation = (path: string) => {
         setIsOpen(false);
-        
+
         // Se for o currículo, abre em nova aba
         if (path === '/cv25.pdf') {
             window.open(path, '_blank');
             return;
         }
-        
+
         // Para outras páginas, verifica se já estamos na mesma página
         if (pathname === path) {
             // Se já estamos na mesma página, força um refresh
@@ -83,13 +83,18 @@ export function Menu() {
             {isOpen && (
                 <div className={styles.menuMobile}>
                     {menuItems.map((item) => (
-                        <button
-                            key={item.path}
-                            onClick={() => handleNavigation(item.path)}
-                            className={styles.menuItem}
-                        >
-                            {item.name}
-                        </button>
+                        item.name == 'Curriculo' ? (
+                            <></>
+                        ) : (
+                            <button
+                                key={item.path}
+                                onClick={() => handleNavigation(item.path)}
+                                className={styles.menuItem}
+
+                            >
+                                {item.name}
+                            </button>
+                        )
                     ))}
                 </div>
             )}

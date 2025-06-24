@@ -1,66 +1,269 @@
-.certificadoItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  transition: transform 0.3s ease;
+.certificadoCard {
   width: 100%;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateX(100px);
 }
 
-.certificadoItem:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.certificadoContent {
+.cardContainer {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border: 1px solid rgba(1, 222, 178, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(20px);
+  position: relative;
+  height: 280px;
 }
 
-.certificadoTitulo {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
+.cardContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--main) 50%, 
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.certificadoDescricao {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
-  margin: 0;
+.cardContainer:hover {
+  transform: translateY(-8px);
+  border-color: rgba(1, 222, 178, 0.4);
+  box-shadow: 
+    0 20px 40px rgba(1, 222, 178, 0.1),
+    0 0 0 1px rgba(1, 222, 178, 0.1);
 }
 
-.certificadoImagem {
+.cardContainer:hover::before {
+  opacity: 1;
+}
+
+.imageContainer {
+  position: relative;
   width: 300px;
-  height: 200px;
-  border-radius: 0.5rem;
+  height: 100%;
   overflow: hidden;
   flex-shrink: 0;
 }
 
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.certificadoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(1, 222, 178, 0.1) 0%,
+    transparent 50%,
+    rgba(1, 222, 178, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cardContainer:hover .imageWrapper {
+  transform: scale(1.05);
+}
+
+.cardContainer:hover .imageOverlay {
+  opacity: 1;
+}
+
+.contentContainer {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--branco);
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+  transition: color 0.3s ease;
+}
+
+.cardContainer:hover .titulo {
+  color: var(--main);
+}
+
+.badge {
+  background: rgba(1, 222, 178, 0.15);
+  border: 1px solid rgba(1, 222, 178, 0.3);
+  border-radius: 20px;
+  padding: 6px 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.certificadoCard[data-progress="incomplete"] .badge {
+  background: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.certificadoCard[data-progress="incomplete"] .badge span {
+  color: #ffc107;
+}
+
+.badge span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.descricao {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--cinza);
+  line-height: 1.5;
+  margin: 0;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--main) 0%, #00c4a1 100%);
+  border-radius: 2px;
+  position: relative;
+  transition: width 0.8s ease-out;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.statusText {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-  .certificadoItem {
+  .cardContainer {
     flex-direction: column;
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .certificadoTitulo {
-    font-size: 1.5rem;
-  }
-
-  .certificadoDescricao {
-    font-size: 1rem;
-  }
-
-  .certificadoImagem {
-    width: 100%;
     height: auto;
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: 200px;
+  }
+
+  .contentContainer {
+    padding: 1.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .titulo {
+    font-size: 1.2rem;
+  }
+
+  .descricao {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .certificadoCard {
+    margin-bottom: 1.5rem;
+  }
+
+  .cardContainer {
+    border-radius: 16px;
+  }
+
+  .contentContainer {
+    padding: 1.25rem;
+  }
+
+  .titulo {
+    font-size: 1.1rem;
+  }
+
+  .descricao {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 } 

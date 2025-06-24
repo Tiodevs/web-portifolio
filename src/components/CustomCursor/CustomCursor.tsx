@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useLoadingState } from '../../hooks/useLoadingState';
+import styles from './CustomCursor.module.scss';
 
 // Função para renderizar texto circular
 function CircularText({
@@ -172,20 +173,7 @@ export default function CustomCursor() {
   return (
     <div 
       ref={cursorRef}
-      style={{
-        position: 'fixed',
-        width: '30px',
-        height: '30px',
-        backgroundColor: 'var(--preto2)',
-        border: '1.5px solid var(--main)',
-        borderRadius: '50%',
-        pointerEvents: 'none',
-        zIndex: 9999,
-        transform: 'translate(-50%, -50%)',
-        left: 0,
-        top: 0,
-        transition: 'background 0.2s',
-      }}
+      className={styles.cursor}
     >
       {showCircleText && (
         <CircularText text={' APERTE • AGORA •'} radius={24} fontSize={7} color={'var(--branco)'} rotate={circleTextRotation} />

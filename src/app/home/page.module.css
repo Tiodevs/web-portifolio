@@ -8,12 +8,15 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+  
+  max-width: 100vw;
 
 
   .header {
     width: 946px;
     max-width: 100%;
   }
+
 }
 
 .hidden {
@@ -117,6 +120,7 @@
       color: var(--cinza);
       text-align: center;
       line-height: 1.5;
+      font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
   }
 }
@@ -157,6 +161,7 @@
     text-align: start;
     line-height: 1.5;
     margin-bottom: 40px;
+    font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   .projectsButton {
@@ -214,6 +219,11 @@
     font-weight: 700;
     margin-bottom: 40px;
     color: var(--branco);
+  }
+
+  .timelineContainer {
+    position: relative;
+    padding: 20px 0;
   }
 
 }

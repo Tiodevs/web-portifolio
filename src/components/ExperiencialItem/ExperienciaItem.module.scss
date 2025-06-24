@@ -1,54 +1,247 @@
-.experienciasItem {
+
+
+.timelineItem {
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
-  margin-bottom: 30px;
+  position: relative;
+  margin-bottom: 40px;
 
-  .experienciasItemheader {
+  .timelineMarker {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
+    margin-right: 30px;
+    position: relative;
 
-    .experienciasItemtitle {
-      font-size: 25px;
-      font-weight: 500;
-      color: var(--branco);
+    .timelineDot {
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, var(--main) 0%, #00c4a1 100%);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 4px var(--preto), 0 0 20px rgba(1, 222, 178, 0.4);
+      transition: all 0.3s ease;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.9;
+      }
     }
 
-    .experienciasItemsubtitle {
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--cinza);
+    .timelineLine {
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(180deg, 
+        rgba(1, 222, 178, 0.8) 0%, 
+        rgba(1, 222, 178, 0.4) 50%,
+        rgba(1, 222, 178, 0.1) 100%
+      );
+      margin-top: 10px;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 100%;
+        background: rgba(1, 222, 178, 0.2);
+      }
     }
   }
 
-  .experienciasItemdescription {
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--cinza);
-    text-align: start;
-    line-height: 1.5;
-  }
-} 
+  .timelineContent {
+    flex: 1;
+    padding-top: 5px;
 
-@media (max-width: 950px) {
-  .experienciasItem {
-    .experienciasItemheader {
-      flex-direction: column;
-      justify-content: start;
-      align-items: start;
+    .timelineCard {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
 
-      .experienciasItemtitle {
-        font-size: 25px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+          transparent 0%, 
+          rgba(1, 222, 178, 0.6) 50%, 
+          transparent 100%
+        );
       }
 
-      .experienciasItemsubtitle {
+      &:hover {
+        transform: translateY(-2px);
+        border-color: rgba(1, 222, 178, 0.4);
+        box-shadow: 0 8px 32px rgba(1, 222, 178, 0.2);
+
+        .timelineTitle {
+          color: var(--main);
+        }
+      }
+
+      .timelineHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        gap: 20px;
+
+        .timelineInfo {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+
+          .timelineTitle {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--branco);
+            margin: 0;
+            transition: color 0.3s ease;
+            line-height: 1.3;
+          }
+
+          .timelineCargo {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--cinza);
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.9;
+          }
+        }
+
+        .timelinePeriod {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--main);
+          background: rgba(1, 222, 178, 0.1);
+          padding: 6px 12px;
+          border-radius: 20px;
+          border: 1px solid rgba(1, 222, 178, 0.3);
+          white-space: nowrap;
+          backdrop-filter: blur(10px);
+          align-self: flex-start;
+        }
+      }
+
+      .timelineDescription {
+        font-size: 17px;
+        font-weight: 400;
+        color: var(--cinza);
+        line-height: 1.3;
+        margin: 0;
+        font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+    }
+  }
+
+  &:hover .timelineMarker .timelineDot {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px var(--preto), 0 0 30px rgba(1, 222, 178, 0.6);
+  }
+
+  &.lastItem .timelineMarker .timelineLine {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .timelineItem {
+    margin-bottom: 30px;
+
+    .timelineMarker {
+      margin-right: 20px;
+
+      .timelineDot {
+        width: 14px;
+        height: 14px;
+
+        &::before {
+          width: 6px;
+          height: 6px;
+        }
+      }
+
+      .timelineLine {
+        height: 80px;
+      }
+    }
+
+    .timelineContent .timelineCard {
+      padding: 20px;
+
+      .timelineHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .timelineInfo {
+          .timelineTitle {
+            font-size: 20px;
+          }
+
+          .timelineCargo {
+            font-size: 15px;
+          }
+        }
+
+        .timelinePeriod {
+          font-size: 13px;
+          padding: 4px 10px;
+        }
+      }
+
+      .timelineDescription {
         font-size: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .timelineItem {
+    .timelineMarker {
+      margin-right: 15px;
+    }
+
+    .timelineContent .timelineCard {
+      padding: 16px;
+
+      .timelineHeader .timelineInfo {
+        .timelineTitle {
+          font-size: 18px;
+        }
+
+        .timelineCargo {
+          font-size: 14px;
+        }
+      }
+
+      .timelineDescription {
+        font-size: 14px;
       }
     }
   }

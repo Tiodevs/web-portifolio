@@ -188,6 +188,132 @@ export default function Home() {
             
           });
         }
+
+        // Animações da timeline de experiências
+        const timelineItems = gsap.utils.toArray<HTMLElement>('.timelineItem');
+        
+        timelineItems.forEach((item, index) => {
+          const dot = item.querySelector('.timelineDot');
+          const card = item.querySelector('.timelineCard');
+          const line = item.querySelector('.timelineLine');
+          
+          // Animação de entrada do item
+          gsap.fromTo(item, 
+            {
+              opacity: 0,
+              x: index % 2 === 0 ? -50 : 50,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                end: 'top 20%',
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+
+          // Animação do ponto da timeline
+          if (dot) {
+            gsap.fromTo(dot, 
+              {
+                scale: 0,
+                rotation: -180,
+              },
+              {
+                scale: 1,
+                rotation: 0,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                  trigger: item,
+                  start: 'top 75%',
+                  toggleActions: 'play none none reverse',
+                }
+              }
+            );
+          }
+
+          // Animação da linha da timeline
+          if (line) {
+            gsap.fromTo(line, 
+              {
+                scaleY: 0,
+                transformOrigin: 'top',
+              },
+              {
+                scaleY: 1,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: item,
+                  start: 'top 70%',
+                  end: 'bottom 70%',
+                  toggleActions: 'play none none reverse',
+                }
+              }
+            );
+          }
+
+          // Animação do card
+          if (card) {
+            gsap.fromTo(card, 
+              {
+                y: 30,
+                opacity: 0,
+              },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power2.out",
+                delay: 0.2,
+                scrollTrigger: {
+                  trigger: item,
+                  start: 'top 75%',
+                  toggleActions: 'play none none reverse',
+                }
+              }
+            );
+          }
+        });
+
+        // Animações da seção de educação/cursos
+        const cursoItems = gsap.utils.toArray<HTMLElement>('.curso-item');
+        
+        cursoItems.forEach((item, index) => {
+          // Animação lateral de entrada (da direita para esquerda)
+          gsap.fromTo(item,
+            {
+              opacity: 0,
+              x: 120,
+              rotationY: 15,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              rotationY: 0,
+              duration: 1,
+              ease: "power3.out",
+              delay: index * 0.15,
+            }
+          );
+
+          
+
+          // Animação de hover mais suave
+          const cardContainer = item.querySelector('.cardContainer');
+          if (cardContainer) {
+            gsap.set(cardContainer, {
+              transformPerspective: 1000,
+            });
+          }
+        });
+
       }, 500);
 
 
@@ -212,13 +338,14 @@ export default function Home() {
           />
         </div>
         <div className={styles.text}>
-          <h1 ref={titleRef}>Olá, eu sou o Felipe</h1>
-          <p ref={textRef}>Sou um desenvolvedor Full Stack apaixonado por criar soluções digitais robustas, seguras e inteligentes. Utilizo tecnologias modernas — incluindo inteligência artificial — para desenvolver produtos que geram retorno financeiro e entregam experiências excepcionais ao usuário.</p>
+          <h1 ref={titleRef}>Mais que código. Resultados.</h1>
+          <p ref={textRef}>Desenvolvo soluções digitais completas — de Landing Pages a sistemas web e aplicativos móveis (iOS/Android). Meu foco é entender seu modelo de negócio para que cada projeto entregue um retorno sobre o investimento claro e mensurável.</p>
 
           <a
             ref={buttonRef}
             className={styles.buttonheader}
             href="/cv25.pdf"
+            download="cv25.pdf"
           >
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <span
@@ -263,24 +390,6 @@ export default function Home() {
               link="/projetos/02"
               linksgit="/"
             />
-            <ProjectCard
-              title="IA CHAT"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
-              image="/projcts/01/capa01.png"
-              link="/projetos/01"
-              linksgit="/"
-            />
-            <ProjectCard
-              title="Site de links"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi um site de links para um a ASSUMTEK, com um design moderno e responsivo. O site foi criado com Next.js e node.js, uma interface de adiministração para gerenciar os links e um painel de controle para gerenciar o site."
-              image="/projcts/02/Capa01.png"
-              link="/projetos/02"
-              linksgit="/"
-            />
-
-
           </div>
           <div className={styles.projectsButtonContainer}>
             <Link href="/projetos" className={styles.projectsButton}>Ver mais</Link>
@@ -355,21 +464,25 @@ export default function Home() {
 
       <div className={styles.experiencias}>
         <h2 className={styles.experienciasTitle}>Experiências</h2>
-        <div className={styles.experienciasContainer}>
+        <div className={styles.timelineContainer}>
           <ExperienciaItem
-            titulo="Líder do time de Tech"
-            periodo="Assumtek / Jan 2025 — Atual"
+            empresa="ASSUMTEK Education"
+            cargo="Líder do time de Tech"
+            periodo="Jan 2025 — Atual"
             descricao="Atuo como Desenvolvedor Full Stack na ASSUMTEK Education, liderando iniciativas de tecnologia aplicadas à educação. Participei do desenvolvimento de sites institucionais e soluções inovadoras como cartões NFC e assistentes com IA treinada em conteúdos internos. Estruturei automações no Zoho CRM e iniciei projetos de BI para apoiar decisões estratégicas. Também contribuo em eventos como o SAP FORWARD e na modernização de processos internos."
           />
           <ExperienciaItem
-            titulo="Serviço voluntario"
-            periodo="Jan 2023 — Jan 2025 "
+            empresa="Trabalho Voluntário"
+            cargo="Voluntário em Tecnologia e Gestão"
+            periodo="Jan 2023 — Jan 2025"
             descricao="Optei por fazer uma pausa na minha carreira para me dedicar integralmente a um programa de voluntariado, aplicando meus conhecimentos em tecnologia, fotografia, música e gestão para apoiar ONGs, hospitais e comunidades carentes. Durante esse período, participei de diversas iniciativas que buscam proporcionar inclusão, inovação e impacto social."
           />
           <ExperienciaItem
-            titulo="Professor de TI"
+            empresa="Instituição de Ensino"
+            cargo="Professor de TI"
             periodo="Jan 2022 — Jan 2023"
-            descricao="Optei por fazer uma pausa na minha carreira para me dedicar integralmente a um programa de voluntariado, aplicando meus conhecimentos em tecnologia, fotografia, música e gestão para apoiar ONGs, hospitais e comunidades carentes. Durante esse período, participei de diversas iniciativas que buscam proporcionar inclusão, inovação e impacto social."
+            descricao="Atuei como professor de tecnologia da informação, compartilhando conhecimentos em programação, desenvolvimento web e ferramentas digitais. Desenvolvi metodologias de ensino práticas e projetos hands-on para facilitar o aprendizado dos alunos, sempre com foco na aplicação real dos conceitos tecnológicos no mercado de trabalho."
+
           />
         </div>
       </div>
@@ -384,6 +497,9 @@ export default function Home() {
               <CertificadoItem
                 titulo="Faculdade de ADS - Análise e Desenvolvimento de Sistemas"
                 descricao="Atualmente cursando Análise e Desenvolvimento de Sistemas na Universidade Estácio de Sá, com previsão de conclusão o segundo semestre de 2025. Estou aprofundando meus conhecimentos em programação, desenvolvimento web e sistemas, além de aprender sobre IA e desenvolvimento de software."
+                index={0}
+                progresso={90}
+                status="Ultimo semestre"
               />
             </div>
           </div>
@@ -394,7 +510,18 @@ export default function Home() {
               <CertificadoItem
                 titulo="Programa Desenvolve | Desenvolvimento de Software - Grupo Boticário"
                 descricao="Atualmente participando do Desenvolve, o programa de aceleração de carreiras em tecnologia do Grupo Boticário. Fui selecionado para esta trilha de desenvolvimento de software, que visa formar os futuros especialistas da companhia através de uma imersão em projetos reais, tecnologias de ponta e na cultura de uma das maiores empresas de beleza e tecnologia do mundo."
-                imagem="/certificados/desenvolve.png"
+                index={1}
+                progresso={10}
+                status="10% Concluído"
+              />
+            </div>
+            <div className={styles.categoriaContent}>
+              <CertificadoItem
+                titulo="JStack"
+                descricao="Treinamento sobre SaaS, integração com inteligência artificial, React Native, TypeScript, Serverless Framework, AWS Lambda, AWS S3 e muito mais!"
+                index={2}
+                progresso={5}
+                status="5% Concluído"
               />
             </div>
           </div>
@@ -406,26 +533,31 @@ export default function Home() {
                 titulo="Harvard University: CS50x Introdução à Ciência da Computação"
                 descricao="Orgulhoso por ter concluído o CS50x de Harvard, uma das mais desafiadoras e gratificantes introduções à ciência da computação. O curso me levou de conceitos fundamentais, como o sistema binário e algoritmos, a projetos práticos de desenvolvimento de software e web. Finalizei com sucesso todos os trabalhos propostos."
                 imagem="/certificados/CS50x.png"
+                index={2}
               />
               <CertificadoItem
                 titulo="Curso do Google - Análise de Dados"
                 descricao="Este programa intensivo, ministrado por especialistas do Google, me proporcionou uma base sólida no mundo da análise de dados. Aprendi a identificar o ciclo de vida dos dados, a importância da tomada de decisões baseada em dados e as principais ferramentas e metodologias utilizadas por analistas de dados no dia a dia."
                 imagem="/certificados/googDados.jpeg"
+                index={3}
               />
               <CertificadoItem
                 titulo="Santander - Liderança e Performance"
                 descricao="O treinamento de 8 horas explorou como a estratégia, a tecnologia e o fator humano se unem para criar equipes vencedoras. Adquiri conhecimentos sobre como aplicar essa mentalidade de alta performance para otimizar processos, motivar equipes e acelerar resultados no ambiente de trabalho."
                 imagem="/certificados/SantanderLidereança.jpg"
+                index={4}
               />
               <CertificadoItem
                 titulo="AWS Academy Graduate - Cloud Foundations"
                 descricao="Este programa me proporcionou um entendimento detalhado dos conceitos da nuvem AWS, incluindo sua infraestrutura global, serviços essenciais, segurança, arquitetura e modelos de precificação. Adquiri o conhecimento fundamental para articular os benefícios da nuvem AWS e tomar decisões informadas sobre soluções baseadas em seus principais serviços."
                 imagem="/certificados/aws.png"
+                index={5}
               />
               <CertificadoItem
                 titulo="Matheus Fraga - Full Stack, Node e React"
                 descricao="Finalizei com sucesso o curso Projeto Completo da Udemy, que me proporcionou uma imersão prática no desenvolvimento de software. Durante as 25.5 horas de curso, apliquei conceitos de back-end, front-end e mobile para construir uma aplicação funcional."
                 imagem="/certificados/MatheusFraga-React-Next-Node-ReactNative.jpg"
+                index={6}
               />
             </div>
           </div>
