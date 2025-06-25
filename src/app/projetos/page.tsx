@@ -24,24 +24,24 @@ export default function Home() {
       duration: 0.3,
       ease: "power2.out"
     })
-    .from(titleRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.2")
-    .from(descriptionRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.5")
-    .from(containerRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.5");
+      .from(titleRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.2")
+      .from(descriptionRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.5")
+      .from(containerRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.5");
   }, [isLoading]);
 
   return (
@@ -53,7 +53,7 @@ export default function Home() {
             Aqui está um pouco dos meus projetos mais recentes. Cada um deles reflete meu foco em soluções centradas no usuário e meu compromisso com a excelência em performance, segurança e resultados reais para o negócio.
           </p>
           <div className={styles.projectsContainer} ref={containerRef}>
-            <ProjectCard
+            {/* <ProjectCard
               title="IA CHAT"
               subtitle="2025 - Full Stack"
               description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
@@ -68,6 +68,23 @@ export default function Home() {
               image="/projcts/02/Capa01.png"
               link="/projetos/02"
               linksgit="/"
+            /> */}
+
+            <ProjectCard
+              title="Sentier - Landing Page"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma landing page para o Sentier, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
+              image="/projcts/03/Capa01.png"
+              link="/projetos/03"
+              linksgit="https://github.com/Tiodevs/SentierFrontend"
+            />
+            <ProjectCard
+              title="Cloud It Solutions - Landing Page"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma landing page para a Cloud It Solutions, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
+              image="/projcts/04/Capa01.png"
+              link="/projetos/04"
+              linksgit="https://github.com/Tiodevs/SentierFrontend"
             />
           </div>
 

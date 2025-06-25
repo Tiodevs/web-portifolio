@@ -25,7 +25,7 @@ export default function Home() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const buttonTextRef = useRef<HTMLSpanElement>(null);
   const buttonTextRef2 = useRef<HTMLSpanElement>(null);
-  
+
   // Refs para a seção de projetos
   const projectsHeaderRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +69,7 @@ export default function Home() {
       }, "-=0.4")
       .to(buttonRef.current, {
         y: 0,
-        opacity: 1, 
+        opacity: 1,
         duration: 0.1,
         ease: "power2.out",
         clearProps: "all",
@@ -114,37 +114,37 @@ export default function Home() {
     }
 
 
-  }, [ isLoading ]);
+  }, [isLoading]);
 
   useEffect(() => {
-      // Animação dos projetos com cabeçalho fixo
-      const timer = setTimeout(() => {
-        console.log('Iniciando animação dos projetos...');
-        
-        const projectCards = gsap.utils.toArray<HTMLElement>('.project-card-item');
-        console.log('Cards encontrados:', projectCards.length);
-        
-        if (projectCards.length > 0) {
-          console.log('Criando ScrollTrigger...');
-          
-          // Efeito de acordeão nos cards
-          projectCards.forEach((card, index) => {
-            const isFirst = index === 0;
-            
-            // Define posição inicial dos cards
+    // Animação dos projetos com cabeçalho fixo
+    const timer = setTimeout(() => {
+      console.log('Iniciando animação dos projetos...');
+
+      const projectCards = gsap.utils.toArray<HTMLElement>('.project-card-item');
+      console.log('Cards encontrados:', projectCards.length);
+
+      if (projectCards.length > 0) {
+        console.log('Criando ScrollTrigger...');
+
+        // Efeito de acordeão nos cards
+        projectCards.forEach((card, index) => {
+          const isFirst = index === 0;
+
+          // Define posição inicial dos cards
+          gsap.set(card, {
+            zIndex: projectCards.length + index,
+            position: 'sticky',
+            top: `${100 + (index * 10)}px`, // Mais espaçamento entre cards
+          });
+
+          if (isFirst) {
             gsap.set(card, {
-              zIndex: projectCards.length + index,
-              position: 'sticky',
-              top: `${100 + (index * 10)}px`, // Mais espaçamento entre cards
+              y: 0,
             });
 
-            if (isFirst) {
-              gsap.set(card, {
-                y: 0,
-              });
-
-              // Animação de entrada suave para cada card
-            gsap.fromTo(card, 
+            // Animação de entrada suave para cada card
+            gsap.fromTo(card,
               {
                 y: 0,
               },
@@ -161,10 +161,10 @@ export default function Home() {
                 }
               }
             );
-            } else {
+          } else {
 
-              // Animação de entrada suave para cada card
-            gsap.fromTo(card, 
+            // Animação de entrada suave para cada card
+            gsap.fromTo(card,
               {
                 y: 150,
               },
@@ -181,140 +181,140 @@ export default function Home() {
                 }
               }
             );
-              
-            }
-            
-            
-            
-          });
-        }
 
-        // Animações da timeline de experiências
-        const timelineItems = gsap.utils.toArray<HTMLElement>('.timelineItem');
-        
-        timelineItems.forEach((item, index) => {
-          const dot = item.querySelector('.timelineDot');
-          const card = item.querySelector('.timelineCard');
-          const line = item.querySelector('.timelineLine');
-          
-          // Animação de entrada do item
-          gsap.fromTo(item, 
+          }
+
+
+
+        });
+      }
+
+      // Animações da timeline de experiências
+      const timelineItems = gsap.utils.toArray<HTMLElement>('.timelineItem');
+
+      timelineItems.forEach((item, index) => {
+        const dot = item.querySelector('.timelineDot');
+        const card = item.querySelector('.timelineCard');
+        const line = item.querySelector('.timelineLine');
+
+        // Animação de entrada do item
+        gsap.fromTo(item,
+          {
+            opacity: 0,
+            x: index % 2 === 0 ? -50 : 50,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 80%',
+              end: 'top 20%',
+              toggleActions: 'play none none reverse',
+            }
+          }
+        );
+
+        // Animação do ponto da timeline
+        if (dot) {
+          gsap.fromTo(dot,
             {
-              opacity: 0,
-              x: index % 2 === 0 ? -50 : 50,
+              scale: 0,
+              rotation: -180,
             },
             {
-              opacity: 1,
-              x: 0,
-              duration: 0.8,
-              ease: "power2.out",
+              scale: 1,
+              rotation: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: item,
-                start: 'top 80%',
-                end: 'top 20%',
+                start: 'top 75%',
                 toggleActions: 'play none none reverse',
               }
             }
           );
+        }
 
-          // Animação do ponto da timeline
-          if (dot) {
-            gsap.fromTo(dot, 
-              {
-                scale: 0,
-                rotation: -180,
-              },
-              {
-                scale: 1,
-                rotation: 0,
-                duration: 0.6,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                  trigger: item,
-                  start: 'top 75%',
-                  toggleActions: 'play none none reverse',
-                }
-              }
-            );
-          }
-
-          // Animação da linha da timeline
-          if (line) {
-            gsap.fromTo(line, 
-              {
-                scaleY: 0,
-                transformOrigin: 'top',
-              },
-              {
-                scaleY: 1,
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: item,
-                  start: 'top 70%',
-                  end: 'bottom 70%',
-                  toggleActions: 'play none none reverse',
-                }
-              }
-            );
-          }
-
-          // Animação do card
-          if (card) {
-            gsap.fromTo(card, 
-              {
-                y: 30,
-                opacity: 0,
-              },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: "power2.out",
-                delay: 0.2,
-                scrollTrigger: {
-                  trigger: item,
-                  start: 'top 75%',
-                  toggleActions: 'play none none reverse',
-                }
-              }
-            );
-          }
-        });
-
-        // Animações da seção de educação/cursos
-        const cursoItems = gsap.utils.toArray<HTMLElement>('.curso-item');
-        
-        cursoItems.forEach((item, index) => {
-          // Animação lateral de entrada (da direita para esquerda)
-          gsap.fromTo(item,
+        // Animação da linha da timeline
+        if (line) {
+          gsap.fromTo(line,
             {
-              opacity: 0,
-              x: 120,
-              rotationY: 15,
+              scaleY: 0,
+              transformOrigin: 'top',
             },
             {
-              opacity: 1,
-              x: 0,
-              rotationY: 0,
-              duration: 1,
-              ease: "power3.out",
-              delay: index * 0.15,
+              scaleY: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 70%',
+                end: 'bottom 70%',
+                toggleActions: 'play none none reverse',
+              }
             }
           );
+        }
 
-          
+        // Animação do card
+        if (card) {
+          gsap.fromTo(card,
+            {
+              y: 30,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              delay: 0.2,
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        }
+      });
 
-          // Animação de hover mais suave
-          const cardContainer = item.querySelector('.cardContainer');
-          if (cardContainer) {
-            gsap.set(cardContainer, {
-              transformPerspective: 1000,
-            });
+      // Animações da seção de educação/cursos
+      const cursoItems = gsap.utils.toArray<HTMLElement>('.curso-item');
+
+      cursoItems.forEach((item, index) => {
+        // Animação lateral de entrada (da direita para esquerda)
+        gsap.fromTo(item,
+          {
+            opacity: 0,
+            x: 120,
+            rotationY: 15,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            rotationY: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: index * 0.15,
           }
-        });
+        );
 
-      }, 500);
+
+
+        // Animação de hover mais suave
+        const cardContainer = item.querySelector('.cardContainer');
+        if (cardContainer) {
+          gsap.set(cardContainer, {
+            transformPerspective: 1000,
+          });
+        }
+      });
+
+    }, 500);
 
 
     return () => {
@@ -374,7 +374,7 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.projectsContainer}>
-            <ProjectCard
+            {/* <ProjectCard
               title="IA CHAT"
               subtitle="2025 - Full Stack"
               description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
@@ -389,6 +389,22 @@ export default function Home() {
               image="/projcts/02/Capa01.png"
               link="/projetos/02"
               linksgit="/"
+            /> */}
+            <ProjectCard
+              title="Sentier - Landing Page"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma landing page para o Sentier, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
+              image="/projcts/03/Capa01.png"
+              link="/projetos/03"
+              linksgit="https://github.com/Tiodevs/SentierFrontend"
+            />
+            <ProjectCard
+              title="Cloud It Solutions - Landing Page"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma landing page para a Cloud It Solutions, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
+              image="/projcts/04/Capa01.png"
+              link="/projetos/04"
+              linksgit="https://github.com/Tiodevs/SentierFrontend"
             />
           </div>
           <div className={styles.projectsButtonContainer}>
@@ -410,8 +426,8 @@ export default function Home() {
               { nome: "React", imagem: "/icons/react-original.svg", altImagem: "React" },
               { nome: "Next.js", imagem: "/icons/nextjs-original.svg", altImagem: "Next.js" },
               { nome: "Figma", imagem: "/icons/figma-original.svg", altImagem: "Figma" },
-              {nome: "Vercel", imagem: "/icons/vercel-original.svg", altImagem: "Vercel"},
-              {nome: "Axios", imagem: "/icons/axios-plain.svg", altImagem: "Axios"},
+              { nome: "Vercel", imagem: "/icons/vercel-original.svg", altImagem: "Vercel" },
+              { nome: "Axios", imagem: "/icons/axios-plain.svg", altImagem: "Axios" },
               "GSAP",
               "SEO",
             ]}
@@ -467,21 +483,28 @@ export default function Home() {
         <div className={styles.timelineContainer}>
           <ExperienciaItem
             empresa="ASSUMTEK Education"
-            cargo="Líder do time de Tech"
+            cargo="Líder de equipe de TI - Desenvolvedor FullSatck"
             periodo="Jan 2025 — Atual"
-            descricao="Atuo como Desenvolvedor Full Stack na ASSUMTEK Education, liderando iniciativas de tecnologia aplicadas à educação. Participei do desenvolvimento de sites institucionais e soluções inovadoras como cartões NFC e assistentes com IA treinada em conteúdos internos. Estruturei automações no Zoho CRM e iniciei projetos de BI para apoiar decisões estratégicas. Também contribuo em eventos como o SAP FORWARD e na modernização de processos internos."
+            descricao="Em minha trajetória na Assumtek, evoluí de um Desenvolvedor focado na criação de produtos para um Líder responsável pela estratégia tecnológica da empresa. 
+Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SAP, utilizando Node.js e Next.js. Após o sucesso do projeto, fui promovido a Líder de Equipe de TI, onde passei a gerenciar a segurança e a infraestrutura crítica, implementando a política de recuperação de desastres com Veeam."
+          />
+          <ExperienciaItem
+            empresa="Empreendedor"
+            cargo="Fundador & Consultor de Estratégia Digital"
+            periodo="Jan 2025 — Atual"
+            descricao="Fundei a Sentier como uma startup focada no desenvolvimento de produtos e soluções digitais sob medida. Atuei como líder técnico e de produto, gerenciando projetos desde a concepção (MVP) até a implementação, com foco especial na construção de aplicações web de alta performance e na arquitetura de software."
           />
           <ExperienciaItem
             empresa="Trabalho Voluntário"
-            cargo="Voluntário em Tecnologia e Gestão"
+            cargo="Pausa na carreira"
             periodo="Jan 2023 — Jan 2025"
-            descricao="Optei por fazer uma pausa na minha carreira para me dedicar integralmente a um programa de voluntariado, aplicando meus conhecimentos em tecnologia, fotografia, música e gestão para apoiar ONGs, hospitais e comunidades carentes. Durante esse período, participei de diversas iniciativas que buscam proporcionar inclusão, inovação e impacto social."
+            descricao="Dediquei um período sabático de dois anos para liderar e executar projetos de alto impacto social, aplicando competências em tecnologia, gestão e comunicação para apoiar ONGs e comunidades em vulnerabilidade. Esta experiência fortaleceu minhas habilidades de liderança, resolução de problemas complexos e adaptação em ambientes dinâmicos."
           />
           <ExperienciaItem
-            empresa="Instituição de Ensino"
-            cargo="Professor de TI"
+            empresa="Cedaspy"
+            cargo="Professor de tecnologia - Programação, robotica, marketing e design"
             periodo="Jan 2022 — Jan 2023"
-            descricao="Atuei como professor de tecnologia da informação, compartilhando conhecimentos em programação, desenvolvimento web e ferramentas digitais. Desenvolvi metodologias de ensino práticas e projetos hands-on para facilitar o aprendizado dos alunos, sempre com foco na aplicação real dos conceitos tecnológicos no mercado de trabalho."
+            descricao="Responsável por ministrar um currículo técnico abrangente para jovens, com foco em prepará-los para os desafios do mercado de trabalho digital. Criei um ambiente de aprendizado engajador, prático e orientado a resultados."
 
           />
         </div>
