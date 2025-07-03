@@ -94,6 +94,7 @@ export function HabilidadesList({
               key={index}
               ref={(el) => { habilidadeRefs.current[index] = el; }}
               className={`${styles.habilidadeItem} ${nomeHabilidade === habilidadeDestaque ? styles.habilidadeDestaque : ''}`}
+              data-testid="habilidade-item"
             >
               {imagemHabilidade && (
                 <div className={styles.habilidadeImagem}>
