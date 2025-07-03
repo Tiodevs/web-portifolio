@@ -139,6 +139,10 @@ O projeto é totalmente responsivo e otimizado para:
 - **Railway** - Deploy simples e rápido
 - **AWS Amplify** - Para projetos empresariais
 
+## Testes unitarios
+
+
+
 ## 🤝 Contribuindo
 
 1. Faça um fork do projeto
