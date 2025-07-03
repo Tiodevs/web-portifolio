@@ -1,8 +1,16 @@
 # Versão SIMPLES - Só testes (sem deploy automático)
 name: 🧪 Testes Automáticos
 
-# Quando rodar: a cada push e pull request
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore: # Ignora pushes diretos para a main/master
+      - 'main'
+      - 'master'
+  pull_request:
+    branches: # Roda apenas em PRs que apontam para a main/master
+      - 'main'
+      - 'master'
+
 
 jobs:
   test:

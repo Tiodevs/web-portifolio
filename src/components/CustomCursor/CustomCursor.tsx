@@ -174,6 +174,7 @@ export default function CustomCursor() {
     <div 
       ref={cursorRef}
       className={styles.cursor}
+      data-testid="custom-cursor"
     >
       {showCircleText && (
         <CircularText text={' APERTE • AGORA •'} radius={24} fontSize={7} color={'var(--branco)'} rotate={circleTextRotation} />

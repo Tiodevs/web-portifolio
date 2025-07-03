@@ -587,12 +587,7 @@ Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SA
         </div>
       </div>
 
-      <Contato
-        email="santospefelipe@gmail.com"
-        linkedin="https://www.linkedin.com/in/felipe-santos-pe/"
-        instagram="https://www.instagram.com/felipe.santos.pe/"
-        copyright="© 2025 Felipe Santos"
-      />
+      <Contato/>
     </div>
   );
 }

@@ -97,12 +97,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Contato
-        email="santospefelipe@gmail.com"
-        linkedin="https://www.linkedin.com/in/felipe-santos-pe/"
-        instagram="https://www.instagram.com/felipe.santos.pe/"
-        copyright="© 2025 Felipe Santos"
-      />
+      <Contato/>
     </div>
   );
 }

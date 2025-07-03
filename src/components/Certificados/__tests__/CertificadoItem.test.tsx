@@ -60,7 +60,6 @@ describe('CertificadoItem', () => {
     expect(screen.getByText('Concluído')).toBeInTheDocument()
   })
 
-  // ✨ NÍVEL 3: Testando comportamento condicional
   it('deve mostrar "Em Andamento" quando progresso for menor que 100%', () => {
     render(
       <CertificadoItem 
@@ -71,7 +70,6 @@ describe('CertificadoItem', () => {
       />
     )
 
-    // Quando progresso < 100%, deve mostrar "Em Andamento"
     expect(screen.getByText('Em Andamento')).toBeInTheDocument()
     expect(screen.getByText('65% completo')).toBeInTheDocument()
     
@@ -79,7 +77,6 @@ describe('CertificadoItem', () => {
     expect(screen.queryByText('Certificado')).not.toBeInTheDocument()
   })
 
-  // ✨ NÍVEL 4: Testando estrutura DOM e atributos
   it('deve ter os atributos data corretos', () => {
     render(
       <CertificadoItem 
@@ -98,7 +95,6 @@ describe('CertificadoItem', () => {
     expect(elemento).toHaveAttribute('data-progress', 'incomplete')
   })
 
-  // ✨ NÍVEL 5: Testando estilos dinâmicos (barra de progresso)
   it('deve mostrar a barra de progresso com largura correta', () => {
     render(
       <CertificadoItem 
@@ -115,7 +111,6 @@ describe('CertificadoItem', () => {
     expect(barraProgresso).toHaveStyle('width: 80%')
   })
 
-  // ✨ NÍVEL 6: Testando quando algo NÃO deve aparecer
   it('NÃO deve mostrar imagem quando não fornecida', () => {
     render(
       <CertificadoItem 
