@@ -519,7 +519,7 @@ Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SA
             <div className={styles.categoriaContent}>
               <CertificadoItem
                 titulo="Faculdade de ADS - Análise e Desenvolvimento de Sistemas"
-                descricao="Atualmente cursando Análise e Desenvolvimento de Sistemas na Universidade Estácio de Sá, com previsão de conclusão o segundo semestre de 2025. Estou aprofundando meus conhecimentos em programação, desenvolvimento web e sistemas, além de aprender sobre IA e desenvolvimento de software."
+                descricao="Atualmente cursando Análise e Desenvolvimento de Sistemas na Universidade UNIFAEL, com previsão de conclusão o segundo semestre de 2025. Estou aprofundando meus conhecimentos em programação, desenvolvimento web e sistemas, além de aprender sobre IA e desenvolvimento de software."
                 index={0}
                 progresso={90}
                 status="Ultimo semestre"

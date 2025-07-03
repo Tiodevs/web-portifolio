@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # Serviço para desenvolvimento (com hot reload)
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Monta seu código fonte dentro do container
+      # Mudanças no seu código aparecem instantaneamente!
+      - .:/app
+      # Exclui node_modules para evitar conflitos
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    # Reinicia automaticamente se o container parar
+    restart: unless-stopped
+
+  # Serviço para produção (build completo)
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped 

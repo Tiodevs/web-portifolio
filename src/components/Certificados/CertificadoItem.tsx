@@ -43,13 +43,13 @@ export function CertificadoItem({
         
         <div className={styles.contentContainer}>
           <div className={styles.header}>
-            <h3 className={styles.titulo}>{titulo}</h3>
+            <h3 className={styles.titulo} data-testid="certificado-titulo">{titulo}</h3>
             <div className={styles.badge}>
               <span>{progresso === 100 ? 'Certificado' : 'Em Andamento'}</span>
             </div>
           </div>
           
-          <p className={styles.descricao}>{descricao}</p>
+          <p className={styles.descricao} data-testid="certificado-descricao">{descricao}</p>
           
           <div className={styles.footer}>
             <div className={styles.progressBar}>

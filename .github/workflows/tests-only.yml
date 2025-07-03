@@ -1,0 +1,33 @@
+# Versão SIMPLES - Só testes (sem deploy automático)
+name: 🧪 Testes Automáticos
+
+# Quando rodar: a cada push e pull request
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: 🧪 Rodar Testes
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Baixar o código
+      - uses: actions/checkout@v4
+      
+      # 2. Instalar Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      
+      # 3. Instalar dependências
+      - name: 📦 Instalar dependências
+        run: npm ci
+      
+      # 4. Rodar testes
+      - name: 🧪 Rodar testes
+        run: npm test
+        
+      # 5. Testar build
+      - name: 🏗️ Testar build
+        run: npm run build 
