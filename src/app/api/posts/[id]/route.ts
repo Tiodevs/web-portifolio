@@ -4,10 +4,11 @@ import { BlogService } from '@/lib/blog'
 // GET /api/posts/[id] - Buscar post específico
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const post = await BlogService.getPostById(params.id)
+    const { id } = await params
+    const post = await BlogService.getPostById(id)
 
     if (!post) {
       return NextResponse.json(
@@ -32,12 +33,13 @@ export async function GET(
 // PUT /api/posts/[id] - Atualizar post
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
 
-    const post = await BlogService.updatePost(params.id, {
+    const post = await BlogService.updatePost(id, {
       title: body.title,
       content: body.content,
       excerpt: body.excerpt,
@@ -61,10 +63,11 @@ export async function PUT(
 // DELETE /api/posts/[id] - Deletar post
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await BlogService.deletePost(params.id)
+    const { id } = await params
+    await BlogService.deletePost(id)
 
     return NextResponse.json({
       success: true,
