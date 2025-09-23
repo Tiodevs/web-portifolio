@@ -1,0 +1,391 @@
+.page {
+  width: 1200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.admin {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 50px;
+}
+
+.header {
+  text-align: center;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.backLink, .viewLink {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backLink:hover, .viewLink:hover {
+  color: var(--branco);
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 15px;
+}
+
+.postInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.published {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.badge.draft {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.date {
+  color: var(--cinza);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.form {
+  background: var(--preto2);
+  border: 1px solid var(--cinza2);
+  border-radius: 18px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--branco);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.input {
+  background: var(--preto);
+  border: 1px solid var(--cinza2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--branco);
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--cinza);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #22c55e;
+}
+
+.textarea {
+  background: var(--preto);
+  border: 1px solid var(--cinza2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--branco);
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s ease;
+}
+
+.textarea.small {
+  font-family: inherit;
+  min-height: 80px;
+}
+
+.textarea::placeholder {
+  color: var(--cinza);
+  font-family: inherit;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #22c55e;
+}
+
+.markdownHelp {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+  color: var(--cinza);
+  line-height: 1.5;
+}
+
+.markdownHelp code {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 15px;
+  background: var(--preto);
+  border: 1px solid var(--cinza2);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.checkboxLabel:hover {
+  border-color: #22c55e;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #22c55e;
+  cursor: pointer;
+}
+
+.checkboxText {
+  color: var(--branco);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.formActions {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.deleteButton {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+.deleteButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveButton {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.saveButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--branco);
+}
+
+.loading h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--branco);
+  text-align: center;
+  background: var(--preto2);
+  border: 1px solid var(--cinza2);
+  border-radius: 18px;
+  padding: 50px;
+  margin: 50px;
+}
+
+.error h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #ff6b6b;
+}
+
+.error p {
+  font-size: 18px;
+  color: var(--cinza);
+  margin-bottom: 25px;
+}
+
+.errorActions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.backButton {
+  background-color: var(--preto2);
+  color: var(--branco);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid var(--cinza2);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: var(--cinza2);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1200px) {
+  .page {
+    width: 100%;
+    padding: 0 50px;
+  }
+  
+  .admin {
+    margin: 30px 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 0 30px;
+  }
+  
+  .title {
+    font-size: 36px;
+  }
+  
+  .form {
+    padding: 30px;
+  }
+  
+  .headerTop {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .postInfo {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 0 20px;
+  }
+  
+  .admin {
+    margin: 20px 0;
+  }
+  
+  .title {
+    font-size: 30px;
+  }
+  
+  .form {
+    padding: 25px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .deleteButton, .saveButton {
+    width: 100%;
+  }
+}
