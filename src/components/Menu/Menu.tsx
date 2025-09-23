@@ -18,7 +18,8 @@ export function Menu() {
     const menuItems = [
         { name: 'Home', path: '/home' },
         { name: 'Projetos', path: '/projetos' },
-        { name: 'Curriculo', path: '/cv25.pdf' },
+        { name: 'CV', path: '/cv25.pdf' },
+        { name: 'Blog', path: '/blog' },
     ];
 
     useEffect(() => {

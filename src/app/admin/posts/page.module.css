@@ -1,0 +1,448 @@
+.page {
+  width: 1200px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.admin {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 50px;
+}
+
+.header {
+  text-align: center;
+}
+
+.headerTop {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.backLink {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backLink:hover {
+  color: var(--branco);
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: var(--cinza);
+  margin-bottom: 30px;
+}
+
+.createButton {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.createButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+}
+
+.filters {
+  background: var(--preto2);
+  border: 1px solid var(--cinza2);
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  background: transparent;
+  border: 1px solid var(--cinza2);
+  color: var(--cinza);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filterButton:hover {
+  color: var(--branco);
+  border-color: var(--branco);
+}
+
+.filterButton.active {
+  background: var(--branco);
+  color: var(--preto);
+  border-color: var(--branco);
+}
+
+.searchContainer {
+  flex: 1;
+  max-width: 300px;
+}
+
+.searchInput {
+  width: 100%;
+  background: var(--preto);
+  border: 1px solid var(--cinza2);
+  border-radius: 6px;
+  padding: 10px 15px;
+  color: var(--branco);
+  font-size: 14px;
+}
+
+.searchInput::placeholder {
+  color: var(--cinza);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #22c55e;
+}
+
+.tableContainer {
+  background: var(--preto2);
+  border: 1px solid var(--cinza2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: var(--preto);
+  color: var(--branco);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--cinza2);
+}
+
+.table td {
+  padding: 20px;
+  border-bottom: 1px solid var(--cinza2);
+  vertical-align: top;
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.titleCell {
+  width: 40%;
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.postTitle {
+  font-size: 16px;
+  color: var(--branco);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.postExcerpt {
+  color: var(--cinza);
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.dateCell {
+  color: var(--cinza);
+  font-size: 14px;
+  width: 20%;
+}
+
+.actionsCell {
+  width: 30%;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.published {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.badge.draft {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.editButton, .viewButton, .toggleButton, .deleteButton {
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.editButton {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.editButton:hover {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.viewButton {
+  background: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+
+.viewButton:hover {
+  background: rgba(107, 114, 128, 0.3);
+}
+
+.toggleButton.publish {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.toggleButton.publish:hover {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+.toggleButton.unpublish {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.toggleButton.unpublish:hover {
+  background: rgba(245, 158, 11, 0.3);
+}
+
+.deleteButton {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.deleteButton:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.noPosts {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--cinza);
+}
+
+.noPosts h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: var(--branco);
+}
+
+.noPosts p {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.createFirstButton {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.createFirstButton:hover {
+  transform: translateY(-2px);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--branco);
+}
+
+.loading h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--branco);
+  text-align: center;
+  background: var(--preto2);
+  border: 1px solid var(--cinza2);
+  border-radius: 18px;
+  padding: 50px;
+  margin: 50px;
+}
+
+.error h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #ff6b6b;
+}
+
+.error p {
+  font-size: 18px;
+  color: var(--cinza);
+  margin-bottom: 25px;
+}
+
+.retryButton {
+  background-color: var(--preto2);
+  color: var(--branco);
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--cinza2);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background-color: var(--cinza2);
+}
+
+@media (max-width: 1200px) {
+  .page {
+    width: 100%;
+    padding: 0 50px;
+  }
+  
+  .admin {
+    margin: 30px 0;
+  }
+  
+  .table {
+    font-size: 14px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 0 30px;
+  }
+  
+  .title {
+    font-size: 36px;
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .searchContainer {
+    max-width: none;
+  }
+  
+  .tableContainer {
+    overflow-x: auto;
+  }
+  
+  .table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 0 20px;
+  }
+  
+  .admin {
+    margin: 20px 0;
+  }
+  
+  .title {
+    font-size: 30px;
+  }
+  
+  .filterButtons {
+    justify-content: center;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .editButton, .viewButton, .toggleButton, .deleteButton {
+    width: 100%;
+    text-align: center;
+  }
+}

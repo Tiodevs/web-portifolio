@@ -1,0 +1,29 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+// Modelo simples de Post do blog
+model Post {
+  id          String    @id @default(cuid())
+  title       String
+  content     String    // Conteúdo em Markdown ou HTML
+  excerpt     String?   // Resumo do post
+  coverImage  String?   // URL da imagem de capa
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+
+  @@map("posts")
+}
+
+//  Comandos do Prisma
+// npx prisma migrate dev --name init
+// npx prisma migrate dev --name add-publishedAt
+// npx prisma migrate dev --name add-directUrl
+// npx prisma migrate dev --name add-publishedAt
