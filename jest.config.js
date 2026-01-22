@@ -26,7 +26,7 @@ const customJestConfig = {
   ],
   
   // Configuração de módulos
-  moduleNameMapping: {
+  moduleNameMapper: {
     // Mapeamento para arquivos CSS e outros assets
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
