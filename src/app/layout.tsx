@@ -1,5 +1,5 @@
+import '../lib/serverLocalStorage';
 import type { Metadata, Viewport } from "next";
-
 
 import { Menu } from "../components/Menu/Menu";
 import CustomCursor from "../components/CustomCursor/CustomCursor";

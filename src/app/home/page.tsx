@@ -338,14 +338,14 @@ export default function Home() {
           />
         </div>
         <div className={styles.text}>
-          <h1 ref={titleRef}>Mais que código. Resultados.</h1>
-          <p ref={textRef}>Desenvolvo soluções digitais completas — de Landing Pages a sistemas web e aplicativos móveis (iOS/Android). Meu foco é entender seu modelo de negócio para que cada projeto entregue um retorno sobre o investimento claro e mensurável.</p>
+          <h1 ref={titleRef}>Automação em escala industrial</h1>
+          <p ref={textRef}>Especialista em unir desenvolvimento Full Stack à inteligência de processos no Grupo Boticário. Crio soluções que conectam a fábrica ao digital para maximizar a eficiência produtiva.</p>
 
           <a
             ref={buttonRef}
             className={styles.buttonheader}
-            href="/cv25.pdf"
-            download="cv25.pdf"
+            href="/CV2026Felipe.pdf"
+            download="CV2026Felipe.pdf"
           >
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <span
@@ -374,37 +374,19 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.projectsContainer}>
-            {/* <ProjectCard
+            <ProjectCard
               title="IA CHAT"
               subtitle="2025 - Full Stack"
               description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
               image="/projcts/01/capa01.png"
               link="/projetos/01"
-              linksgit="/"
             />
-            <ProjectCard
-              title="Site de links"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi um site de links para um a ASSUMTEK, com um design moderno e responsivo. O site foi criado com Next.js e node.js, uma interface de adiministração para gerenciar os links e um painel de controle para gerenciar o site."
-              image="/projcts/02/Capa01.png"
-              link="/projetos/02"
-              linksgit="/"
-            /> */}
             <ProjectCard
               title="Sentier - Landing Page"
               subtitle="2025 - Full Stack"
               description="Desenvolvi uma landing page para o Sentier, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
               image="/projcts/03/Capa01.png"
               link="/projetos/03"
-              linksgit="https://github.com/Tiodevs/SentierFrontend"
-            />
-            <ProjectCard
-              title="Cloud It Solutions - Landing Page"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi uma landing page para a Cloud It Solutions, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
-              image="/projcts/04/Capa01.png"
-              link="/projetos/04"
-              linksgit="https://github.com/Tiodevs/SentierFrontend"
             />
           </div>
           <div className={styles.projectsButtonContainer}>
@@ -482,31 +464,24 @@ export default function Home() {
         <h2 className={styles.experienciasTitle}>Experiências</h2>
         <div className={styles.timelineContainer}>
           <ExperienciaItem
+            empresa="Grupo Boticário"
+            cargo="Desenvolvedor I - Tech Industrial AMP"
+            periodo="Jan 2026 — Atual"
+            descricao="Desenvolvimento de automações industriais integrando sistemas de produção à plataforma digital. Criação de soluções full-stack com Node.js, Next.js e bancos de dados relacionais para otimizar processos produtivos, garantindo eficiência, escalabilidade e segurança nas operações da fábrica."
+          />
+          <ExperienciaItem
             empresa="ASSUMTEK Education"
-            cargo="Líder de equipe de TI - Desenvolvedor FullSatck"
-            periodo="Jan 2025 — Atual"
-            descricao="Em minha trajetória na Assumtek, evoluí de um Desenvolvedor focado na criação de produtos para um Líder responsável pela estratégia tecnológica da empresa. 
-Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SAP, utilizando Node.js e Next.js. Após o sucesso do projeto, fui promovido a Líder de Equipe de TI, onde passei a gerenciar a segurança e a infraestrutura crítica, implementando a política de recuperação de desastres com Veeam."
+            cargo="Desenvolvedor Full Stack Pleno"
+            periodo="Jan 2025 — Jan 2026"
+            descricao="Liderança no desenvolvimento completo de um SaaS com IA (RAG) para otimizar o fluxo de consultores SAP, utilizando Node.js, React/Next e Prisma. Criação de automações MarTech complexas integrando Meta, Make, n8n, Active Campaign e HubSpot CRM, desenvolvendo BIs para diversos setores. Desenvolvimento full-stack do sistema interno de RH e front-end do painel de backoffice. Atuação em metodologia ágil (Scrum) com gestão de PRs e colaboração multidisciplinar."
           />
           <ExperienciaItem
-            empresa="Empreendedor"
+            empresa="Autônomo & Freelance"
             cargo="Fundador & Consultor de Estratégia Digital"
-            periodo="Jan 2025 — Atual"
-            descricao="Fundei a Sentier como uma startup focada no desenvolvimento de produtos e soluções digitais sob medida. Atuei como líder técnico e de produto, gerenciando projetos desde a concepção (MVP) até a implementação, com foco especial na construção de aplicações web de alta performance e na arquitetura de software."
+            periodo="Jan 2021 — Dez 2024"
+            descricao="Fundação de startup especializada em desenvolvimento de produtos e soluções digitais personalizadas. Liderança técnica e de produto, gerenciando projetos desde a concepção do MVP até implementação final. Foco em arquitetura de software e construção de aplicações web de alta performance."
           />
-          <ExperienciaItem
-            empresa="Trabalho Voluntário"
-            cargo="Pausa na carreira"
-            periodo="Jan 2023 — Jan 2025"
-            descricao="Dediquei um período sabático de dois anos para liderar e executar projetos de alto impacto social, aplicando competências em tecnologia, gestão e comunicação para apoiar ONGs e comunidades em vulnerabilidade. Esta experiência fortaleceu minhas habilidades de liderança, resolução de problemas complexos e adaptação em ambientes dinâmicos."
-          />
-          <ExperienciaItem
-            empresa="Cedaspy"
-            cargo="Professor de tecnologia - Programação, robotica, marketing e design"
-            periodo="Jan 2022 — Jan 2023"
-            descricao="Responsável por ministrar um currículo técnico abrangente para jovens, com foco em prepará-los para os desafios do mercado de trabalho digital. Criei um ambiente de aprendizado engajador, prático e orientado a resultados."
-
-          />
+          
         </div>
       </div>
 
@@ -514,44 +489,17 @@ Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SA
         <h2 className={styles.educacaoTitle}>Educação</h2>
 
         <div className={styles.educacaoContainer}>
-          <div className={styles.educacaoCategoria}>
-            <h3 className={styles.categoriaTitle}>Formação Acadêmica</h3>
-            <div className={styles.categoriaContent}>
-              <CertificadoItem
-                titulo="Faculdade de ADS - Análise e Desenvolvimento de Sistemas"
-                descricao="Atualmente cursando Análise e Desenvolvimento de Sistemas na Universidade UNIFAEL, com previsão de conclusão o segundo semestre de 2025. Estou aprofundando meus conhecimentos em programação, desenvolvimento web e sistemas, além de aprender sobre IA e desenvolvimento de software."
-                index={0}
-                progresso={90}
-                status="Ultimo semestre"
-              />
-            </div>
-          </div>
-
-          <div className={styles.educacaoCategoria}>
-            <h3 className={styles.categoriaTitle}>Cursos em Andamento</h3>
-            <div className={styles.categoriaContent}>
-              <CertificadoItem
-                titulo="Programa Desenvolve | Desenvolvimento de Software - Grupo Boticário"
-                descricao="Atualmente participando do Desenvolve, o programa de aceleração de carreiras em tecnologia do Grupo Boticário. Fui selecionado para esta trilha de desenvolvimento de software, que visa formar os futuros especialistas da companhia através de uma imersão em projetos reais, tecnologias de ponta e na cultura de uma das maiores empresas de beleza e tecnologia do mundo."
-                index={1}
-                progresso={10}
-                status="10% Concluído"
-              />
-            </div>
-            <div className={styles.categoriaContent}>
-              <CertificadoItem
-                titulo="JStack"
-                descricao="Treinamento sobre SaaS, integração com inteligência artificial, React Native, TypeScript, Serverless Framework, AWS Lambda, AWS S3 e muito mais!"
-                index={2}
-                progresso={5}
-                status="5% Concluído"
-              />
-            </div>
-          </div>
+          
 
           <div className={styles.educacaoCategoria}>
             <h3 className={styles.categoriaTitle}>Cursos Concluídos</h3>
             <div className={styles.categoriaContent}>
+              <CertificadoItem
+                titulo="Faculdade de ADS - Análise e Desenvolvimento de Sistemas"
+                descricao="Atualmente cursando Análise e Desenvolvimento de Sistemas na Universidade UNIFAEL, com previsão de conclusão o segundo semestre de 2025. Estou aprofundando meus conhecimentos em programação, desenvolvimento web e sistemas, além de aprender sobre IA e desenvolvimento de software."
+                index={1}
+                progresso={100}
+              />
               <CertificadoItem
                 titulo="Harvard University: CS50x Introdução à Ciência da Computação"
                 descricao="Orgulhoso por ter concluído o CS50x de Harvard, uma das mais desafiadoras e gratificantes introduções à ciência da computação. O curso me levou de conceitos fundamentais, como o sistema binário e algoritmos, a projetos práticos de desenvolvimento de software e web. Finalizei com sucesso todos os trabalhos propostos."
@@ -577,10 +525,16 @@ Comecei liderando o desenvolvimento de um complexo SaaS com IA para o mercado SA
                 index={5}
               />
               <CertificadoItem
+                titulo="JStack"
+                descricao="Treinamento sobre SaaS, integração com inteligência artificial, React Native, TypeScript, Serverless Framework, AWS Lambda, AWS S3 e muito mais!"
+                index={6}
+                progresso={100}
+              />
+              <CertificadoItem
                 titulo="Matheus Fraga - Full Stack, Node e React"
                 descricao="Finalizei com sucesso o curso Projeto Completo da Udemy, que me proporcionou uma imersão prática no desenvolvimento de software. Durante as 25.5 horas de curso, apliquei conceitos de back-end, front-end e mobile para construir uma aplicação funcional."
                 imagem="/certificados/MatheusFraga-React-Next-Node-ReactNative.jpg"
-                index={6}
+                index={7}
               />
             </div>
           </div>

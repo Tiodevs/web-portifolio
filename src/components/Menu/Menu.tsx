@@ -18,8 +18,8 @@ export function Menu() {
     const menuItems = [
         { name: 'Home', path: '/home' },
         { name: 'Projetos', path: '/projetos' },
-        { name: 'CV', path: '/cv25.pdf' },
-        { name: 'Blog', path: '/blog' },
+        { name: 'CV', path: '/CV2026Felipe.pdf' },
+        // { name: 'Blog', path: '/blog' },
     ];
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export function Menu() {
         setIsOpen(false);
 
         // Se for o currículo, abre em nova aba
-        if (path === '/cv25.pdf') {
+        if (path === '/CV2026Felipe.pdf') {
             window.open(path, '_blank');
             return;
         }
@@ -84,7 +84,7 @@ export function Menu() {
             {isOpen && (
                 <div className={styles.menuMobile}>
                     {menuItems.map((item) => (
-                        item.name == 'Curriculo' ? (
+                        item.name == 'CV' ? (
                             <></>
                         ) : (
                             <button

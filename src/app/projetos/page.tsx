@@ -54,6 +54,22 @@ export default function Home() {
           </p>
           <div className={styles.projectsContainer} ref={containerRef}>
             <ProjectCard
+              title="IA CHAT"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
+              image="/projcts/01/capa01.png"
+              link="/projetos/01"
+              linksgit="/"
+            />
+            <ProjectCard
+              title="Site de links"
+              subtitle="2025 - Full Stack"
+              description="Desenvolvi um site de links para um a ASSUMTEK, com um design moderno e responsivo. O site foi criado com Next.js e node.js, uma interface de adiministração para gerenciar os links e um painel de controle para gerenciar o site."
+              image="/projcts/02/Capa01.png"
+              link="/projetos/02"
+              linksgit="/"
+            />
+            <ProjectCard
               title="Sentier - Landing Page"
               subtitle="2025 - Full Stack"
               description="Desenvolvi uma landing page para o Sentier, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
@@ -61,21 +77,14 @@ export default function Home() {
               link="/projetos/03"
               linksgit="https://github.com/Tiodevs/SentierFrontend"
             />
-            <ProjectCard
-              title="Cloud It Solutions - Landing Page"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi uma landing page para a Cloud It Solutions, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
-              image="/projcts/04/Capa01.png"
-              link="/projetos/04"
-              linksgit="https://github.com/Tiodevs/SentierFrontend"
-            />
+
           </div>
 
 
         </div>
       </div>
 
-      <Contato/>
+      <Contato />
     </div>
   );
 }
