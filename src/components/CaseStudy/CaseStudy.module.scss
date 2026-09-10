@@ -1,0 +1,153 @@
+.page {
+  width: 960px;
+  max-width: 100%;
+  margin: 120px auto 0;
+  padding: 0 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.back {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.back:hover {
+  color: var(--main);
+}
+
+.heroVisual {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.eyebrow {
+  color: var(--main);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.page h1 {
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+.lede {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--cinza);
+  font-family: var(--font-inter), Inter, sans-serif;
+}
+
+.note {
+  padding: 14px 16px;
+  border: 1px solid var(--cinza2);
+  border-radius: 12px;
+  color: var(--cinza);
+  font-size: 15px;
+  background: var(--preto2);
+  font-family: var(--font-inter), Inter, sans-serif;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.metrics li {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--cinza2);
+  background: var(--preto2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metrics strong {
+  font-size: 22px;
+  color: var(--main);
+}
+
+.metrics span {
+  font-size: 13px;
+  color: var(--cinza);
+  line-height: 1.35;
+}
+
+.block h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.block p {
+  color: var(--cinza);
+  font-size: 17px;
+  line-height: 1.6;
+  font-family: var(--font-inter), Inter, sans-serif;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 12px 0;
+}
+
+.screens {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.screens img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.ghost {
+  color: var(--branco);
+  text-decoration: none;
+  border: 1px solid var(--cinza2);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.ghost:hover {
+  border-color: var(--main);
+}
+
+@media (max-width: 800px) {
+  .page h1 {
+    font-size: 32px;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+}

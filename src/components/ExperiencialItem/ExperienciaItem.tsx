@@ -1,14 +1,25 @@
+import Link from 'next/link';
 import styles from './ExperienciaItem.module.scss';
 
 interface ExperienciaItemProps {
   empresa: string;
   cargo: string;
   periodo: string;
-  descricao: string;
+  descricao?: string;
+  bullets?: string[];
+  caseSlug?: string;
   isLast?: boolean;
 }
 
-export function ExperienciaItem({ empresa, cargo, periodo, descricao, isLast = false }: ExperienciaItemProps) {
+export function ExperienciaItem({
+  empresa,
+  cargo,
+  periodo,
+  descricao,
+  bullets,
+  caseSlug,
+  isLast = false,
+}: ExperienciaItemProps) {
   return (
     <div className={`${styles.timelineItem} ${isLast ? styles.lastItem : ''}`}>
       <div className={styles.timelineMarker}>
@@ -24,9 +35,22 @@ export function ExperienciaItem({ empresa, cargo, periodo, descricao, isLast = f
             </div>
             <span className={styles.timelinePeriod}>{periodo}</span>
           </div>
-          <p className={styles.timelineDescription}>{descricao}</p>
+          {bullets && bullets.length > 0 ? (
+            <ul className={styles.timelineList}>
+              {bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.timelineDescription}>{descricao}</p>
+          )}
+          {caseSlug && (
+            <Link href={`/projetos/${caseSlug}`} className={styles.caseLink}>
+              Ver case
+            </Link>
+          )}
         </div>
       </div>
     </div>
   );
-} 
+}

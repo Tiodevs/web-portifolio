@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
 
   // Configuração de imagens para permitir domínios externos
   images: {
+    qualities: [75, 100],
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,6 +35,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       }
     ],
+  },
+  async redirects() {
+    return [
+      { source: '/projetos/01', destination: '/projetos/ia-chat', permanent: true },
+      { source: '/projetos/02', destination: '/projetos/site-links', permanent: true },
+      { source: '/projetos/03', destination: '/projetos/sentier-landing', permanent: true },
+    ];
   },
 };
 

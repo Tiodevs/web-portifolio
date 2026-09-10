@@ -30,3 +30,36 @@ body {
   justify-content: center;
   font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -40px;
+  z-index: 200;
+  background: var(--main);
+  color: var(--preto);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+#conteudo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#projetos,
+#experiencia,
+#contato,
+#habilidades,
+#educacao,
+#voluntariado {
+  scroll-margin-top: 110px;
+}

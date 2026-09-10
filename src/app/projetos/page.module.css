@@ -58,7 +58,37 @@
     margin-top: 40px;
     margin-bottom: 40px;
   }
-  
+
+  .projectsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .filter {
+    background: transparent;
+    color: var(--cinza);
+    border: 1px solid var(--cinza2);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .filterActive,
+  .filter:hover {
+    color: var(--preto);
+    background: var(--main);
+    border-color: var(--main);
+  }
 }
 
 @media (max-width: 1200px) {

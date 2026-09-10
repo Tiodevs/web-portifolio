@@ -1,0 +1,96 @@
+.cover {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  min-height: 280px;
+  width: 100%;
+  height: 100%;
+  background: #0e0e0e;
+  border: 1px solid var(--cinza2);
+  color: var(--cinza);
+}
+
+.compact {
+  min-height: 220px;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.meta {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.company {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--main);
+  font-weight: 600;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--branco);
+}
+
+.industrial {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(1, 222, 178, 0.16), transparent 50%),
+    linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+}
+
+.people {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(1, 222, 178, 0.14), transparent 45%),
+    linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+}
+
+.saas {
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(1, 222, 178, 0.12), transparent 50%),
+    linear-gradient(180deg, #101010 0%, #0a0a0a 100%);
+}
+
+.neural {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(1, 222, 178, 0.18), transparent 42%),
+    linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
+}
+
+.nodes {
+  background:
+    radial-gradient(circle at 30% 50%, rgba(1, 222, 178, 0.12), transparent 40%),
+    linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+}
+
+.landing {
+  background:
+    radial-gradient(ellipse at 40% 20%, rgba(246, 174, 45, 0.16), transparent 50%),
+    linear-gradient(180deg, #14120e 0%, #0a0a0a 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    transition: none;
+    transform: none !important;
+  }
+}

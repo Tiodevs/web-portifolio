@@ -1,0 +1,60 @@
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 140px;
+  padding: 16px 18px;
+  border: 1px solid var(--cinza2);
+  border-radius: 16px;
+  background: var(--preto2);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  strong {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--main);
+    letter-spacing: -0.03em;
+  }
+
+  span {
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--cinza);
+    font-family: var(--font-inter), Inter, sans-serif;
+  }
+
+  &:hover {
+    border-color: var(--main);
+    transform: translateY(-2px);
+  }
+}
+
+a.statLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.statLink .stat:hover {
+  border-color: var(--main);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .stat {
+    min-width: 0;
+    flex: 1 1 calc(50% - 8px);
+
+    strong {
+      font-size: 22px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat:hover {
+    transform: none;
+  }
+}
