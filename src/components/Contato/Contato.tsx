@@ -1,33 +1,56 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from './Contato.module.scss';
-
+import { EMAIL, GITHUB_URL, INSTAGRAM_URL, LINKEDIN_PROFILE_URL } from '../../lib/social';
 
 export function Contato() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
+
   return (
     <div className={styles.contato}>
       <div className={styles.imgFooter}>
-        <Image 
-          src="/me2.png" 
-          alt="Foto do felipe o dono do portifolio" 
-          width={429} 
-          height={323} 
-          quality={100} 
+        <Image
+          src="/me2.png"
+          alt="Foto de Felipe P. dos Santos"
+          width={429}
+          height={323}
         />
       </div>
-      <h2 className={styles.contatoTitle}>Contate-me</h2>
+      <h2 className={styles.contatoTitle}>Vamos conversar</h2>
+      <p className={styles.contatoLead}>
+        Disponível para produto, full stack e conversas sobre IA aplicada — sem teatro, com entrega.
+      </p>
       <div className={styles.contatoLinks}>
-        <a href={`mailto:santospefelipe@gmail.com`} target="_blank" >
-          <img src="/iconEmail.svg" alt="Meu email" /> 
-          {"santospefelipe@gmail.com"}
+        <a href={`mailto:${EMAIL}`}>
+          <img src="/iconEmail.svg" alt="" />
+          {EMAIL}
         </a>
-        <a href="https://www.linkedin.com/in/felipe-p-santos-a1a3b9207/" target="_blank" >
-          <img src="/iconLinkedin.svg" alt="Meu linkedin" />
+        <button type="button" className={styles.copy} onClick={copyEmail}>
+          {copied ? 'E-mail copiado' : 'Copiar e-mail'}
+        </button>
+        <a href={LINKEDIN_PROFILE_URL} target="_blank" rel="noopener noreferrer">
+          <img src="/iconLinkedin.svg" alt="Meu LinkedIn" />
         </a>
-        <a href="https://www.instagram.com/somente_ofelipe/" target="_blank" >
-          <img src="/IconIntagram.svg" alt="Meu Intagram" />
+        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+          <img src="/iconGit.svg" alt="Meu GitHub" />
+        </a>
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+          <img src="/IconIntagram.svg" alt="Meu Instagram" />
         </a>
       </div>
       <p data-testid="contato-copyright">© 2026 Felipe Santos</p>
     </div>
   );
-} 
+}

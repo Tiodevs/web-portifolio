@@ -70,10 +70,10 @@ export default function CustomCursor() {
   const { isLoading } = useLoadingState();
 
   useEffect(() => {
-    // Detecta touch ou tela pequena
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isSmallScreen = window.innerWidth < 768;
-    if (isTouch || isSmallScreen) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || isSmallScreen || reduced) {
       setShowCustomCursor(false);
       document.body.style.cursor = 'auto';
       return;

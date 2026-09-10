@@ -6,11 +6,7 @@ import styles from './page.module.css';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useLoadingState } from '../../hooks/useLoadingState';
-import { LINKEDIN_PROFILE_URL } from '../../lib/social';
-
-const GITHUB_URL = 'https://github.com/Tiodevs';
-const INSTAGRAM_URL = 'https://www.instagram.com/somente_ofelipe/';
-const EMAIL = 'santospefelipe@gmail.com';
+import { LINKEDIN_PROFILE_URL, GITHUB_URL, INSTAGRAM_URL, EMAIL } from '../../lib/social';
 
 type LinkItem = {
   title: string;

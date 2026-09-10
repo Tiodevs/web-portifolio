@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 let globalLoadingState = true;
 let listeners: ((loading: boolean) => void)[] = [];
@@ -20,10 +20,10 @@ export const useLoadingState = () => {
         };
     }, []);
 
-    const setGlobalLoading = (loading: boolean) => {
+    const setGlobalLoading = useCallback((loading: boolean) => {
         globalLoadingState = loading;
         listeners.forEach(listener => listener(loading));
-    };
+    }, []);
 
     return { isLoading, setGlobalLoading };
-}; 
+};

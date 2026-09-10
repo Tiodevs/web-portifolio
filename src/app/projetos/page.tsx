@@ -1,89 +1,52 @@
 'use client';
 
-import styles from "./page.module.css";
-import ProjectCard from "@/components/Projetos/ProjectCard";
-import { Contato } from "../../components/Contato/Contato";
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { useLoadingState } from "../../hooks/useLoadingState";
+import { useMemo, useState } from 'react';
+import styles from './page.module.css';
+import CaseCard from '@/components/CaseCard/CaseCard';
+import { Contato } from '../../components/Contato/Contato';
+import { cases } from '@/data/cases';
+import { useLoadingState } from '../../hooks/useLoadingState';
 
-export default function Home() {
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+const FILTERS = ['Todos', 'Produto', 'IA', 'Web', 'SaaS', 'Cloud'] as const;
 
+export default function ProjetosPage() {
   const { isLoading } = useLoadingState();
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]>('Todos');
 
-  useEffect(() => {
-    const tl = gsap.timeline();
-
-    tl.from(projectsRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.out"
-    })
-      .from(titleRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.2")
-      .from(descriptionRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      .from(containerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5");
-  }, [isLoading]);
+  const visible = useMemo(
+    () => (filter === 'Todos' ? cases : cases.filter((item) => item.tags.includes(filter))),
+    [filter],
+  );
 
   return (
     <div className={`${styles.page} ${isLoading ? styles.hidden : styles.visible}`}>
-      <div className={styles.projects} ref={projectsRef}>
+      <div className={styles.projects}>
         <div className={styles.project}>
-          <h2 className={styles.projectsTitle} ref={titleRef}>Meus projetos</h2>
-          <p className={styles.projectsDescription} ref={descriptionRef}>
-            Aqui está um pouco dos meus projetos mais recentes. Cada um deles reflete meu foco em soluções centradas no usuário e meu compromisso com a excelência em performance, segurança e resultados reais para o negócio.
+          <h1 className={styles.projectsTitle}>Projetos</h1>
+          <p className={styles.projectsDescription}>
+            Cases de produto primeiro. Projetos da ASSUMTEK aparecem sem interface interna.
           </p>
-          <div className={styles.projectsContainer} ref={containerRef}>
-            <ProjectCard
-              title="IA CHAT"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi uma solução completa de IA que gera especificações funcionais para consultores SAP, automatizando tarefas que antes levavam horas e reduzindo esse tempo para poucos minutos. Atuei em todas as frentes do projeto — do backend ao frontend, além da infraestrutura e DevOps — garantindo performance, escalabilidade e uma experiência de uso fluida."
-              image="/projcts/01/capa01.png"
-              link="/projetos/01"
-              linksgit="/"
-            />
-            <ProjectCard
-              title="Site de links"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi um site de links para um a ASSUMTEK, com um design moderno e responsivo. O site foi criado com Next.js e node.js, uma interface de adiministração para gerenciar os links e um painel de controle para gerenciar o site."
-              image="/projcts/02/Capa01.png"
-              link="/projetos/02"
-              linksgit="/"
-            />
-            <ProjectCard
-              title="Sentier - Landing Page"
-              subtitle="2025 - Full Stack"
-              description="Desenvolvi uma landing page para o Sentier, com um design moderno e responsivo. O site foi criado com Next.js e node.js, a pagina foi feita para apresentar as informações da empresa e os produtos que ela oferece."
-              image="/projcts/03/Capa01.png"
-              link="/projetos/03"
-              linksgit="https://github.com/Tiodevs/SentierFrontend"
-            />
-
+          <div className={styles.filters} role="tablist" aria-label="Filtrar projetos">
+            {FILTERS.map((item) => (
+              <button
+                key={item}
+                type="button"
+                role="tab"
+                aria-selected={filter === item}
+                className={`${styles.filter} ${filter === item ? styles.filterActive : ''}`}
+                onClick={() => setFilter(item)}
+              >
+                {item}
+              </button>
+            ))}
           </div>
-
-
+          <div className={styles.projectsContainer}>
+            {visible.map((item) => (
+              <CaseCard key={item.slug} item={item} />
+            ))}
+          </div>
         </div>
       </div>
-
       <Contato />
     </div>
   );

@@ -4,22 +4,24 @@ import { Menu } from "../components/Menu/Menu";
 import CustomCursor from "../components/CustomCursor/CustomCursor";
 import { LoadingOverlay } from "../components/LoadingOverlay/LoadingOverlay";
 import "./globals.css";
+import { SITE_URL } from "../lib/social";
 
 import { Manrope, Inter, Sora } from "next/font/google";
-const manrope = Manrope({ 
+const manrope = Manrope({
   subsets: ["latin"],
   variable: '--font-manrope'
 });
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter'
 });
-const sora = Sora({ 
+const sora = Sora({
   subsets: ["latin"],
   variable: '--font-sora'
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Felipe P. dos Santos — Desenvolvedor Full Stack Pleno",
   description: "Desenvolvedor Full Stack Pleno em Curitiba: web, cloud, IA e automação. React, Next.js, Node, AWS e entrega de produto com impacto mensurável.",
   icons: {
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
         alt: 'Felipe P. dos Santos — Desenvolvedor Full Stack Pleno',
       },
     ],
-    url: "https://webcvfelipe.vercel.app/home",
+    url: `${SITE_URL}/home`,
     type: 'website',
     siteName: "Felipe P. dos Santos — Portfólio",
   },
@@ -50,10 +52,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${manrope.variable} ${inter.variable} ${sora.variable}`}>
+        <a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
         <LoadingOverlay />
         <CustomCursor/>
         <Menu />
-        {children}
+        <main id="conteudo">{children}</main>
       </body>
     </html>
   );

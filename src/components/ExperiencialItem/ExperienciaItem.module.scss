@@ -38,7 +38,8 @@
 
     .timelineLine {
       width: 2px;
-      height: 100px;
+      flex: 1;
+      min-height: 24px;
       background: linear-gradient(180deg, 
         rgba(1, 222, 178, 0.8) 0%, 
         rgba(1, 222, 178, 0.4) 50%,
@@ -155,6 +156,36 @@
         margin: 0;
         font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
+
+      .timelineList {
+        margin: 0;
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: var(--cinza);
+        font-size: 16px;
+        line-height: 1.45;
+        font-family: var(--font-inter), Inter, sans-serif;
+      }
+
+      .caseLink {
+        display: inline-flex;
+        margin-top: 16px;
+        color: var(--preto);
+        background: var(--main);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        width: fit-content;
+        transition: opacity 0.2s ease;
+      }
+
+      .caseLink:hover {
+        opacity: 0.88;
+      }
     }
   }
 
@@ -186,7 +217,7 @@
       }
 
       .timelineLine {
-        height: 80px;
+        min-height: 16px;
       }
     }
 

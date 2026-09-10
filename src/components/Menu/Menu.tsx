@@ -1,104 +1,116 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import styles from './Menu.module.scss';
 import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
 import { useLoadingState } from '../../hooks/useLoadingState';
+import { CV_PATH } from '../../lib/social';
+
+const menuItems = [
+  { name: 'Home', href: '/home' },
+  { name: 'Projetos', href: '/projetos' },
+  { name: 'Experiência', href: '/home#experiencia' },
+  { name: 'Contato', href: '/home#contato' },
+  { name: 'CV', href: CV_PATH, external: true },
+];
 
 export function Menu() {
-    const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
-    const pathname = usePathname();
-    const { isLoading } = useLoadingState();
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { isLoading } = useLoadingState();
 
-    const menuItems = [
-        { name: 'Home', path: '/home' },
-        { name: 'Projetos', path: '/projetos' },
-        { name: 'CV', path: '/CV2026v3.pdf' },
-    ];
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gsap.from(menuRef.current, {
+      y: reduced ? 0 : -24,
+      opacity: 0,
+      duration: reduced ? 0 : 0.45,
+      ease: 'power2.out',
+    });
+  }, [isLoading]);
 
-    useEffect(() => {
-        // Animação simples: menu desliza de cima para baixo
-        gsap.from(menuRef.current, {
-            y: -50,
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out",
-            delay: 1.5
-        });
-    }, [isLoading]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
-    const handleNavigation = (path: string) => {
-        setIsOpen(false);
+  if (pathname.startsWith('/links') || isLoading) {
+    return null;
+  }
 
-        // Se for o currículo, abre em nova aba
-        if (path === '/CV2026v3.pdf') {
-            window.open(path, '_blank');
-            return;
-        }
+  return (
+    <nav ref={menuRef} className={styles.nav} aria-label="Principal">
+      <div className={styles.menuDesktop}>
+        {menuItems.map((item) => {
+          const active = !item.external && (
+            item.href === '/home'
+              ? pathname === '/home'
+              : pathname === item.href || pathname.startsWith(`${item.href}/`)
+          );
 
-        // Para outras páginas, verifica se já estamos na mesma página
-        if (pathname === path) {
-            // Se já estamos na mesma página, força um refresh
-            window.location.href = path;
-        } else {
-            // Se for uma página diferente, usa o router
-            window.location.href = path;
-        }
-    };
+          if (item.external) {
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.menuItem}
+              >
+                {item.name}
+              </a>
+            );
+          }
 
-    // Não exibe o menu na página de links
-    if (pathname.startsWith('/links')) {
-        return null;
-    }
-    // Se isLoading for true, retorna null
-    if (isLoading) {
-        return null;
-    }
-
-    return (
-        <nav ref={menuRef} className={styles.nav}>
-            <div className={styles.menuDesktop}>
-                {menuItems.map((item) => (
-                    <button
-                        key={item.path}
-                        onClick={() => handleNavigation(item.path)}
-                        className={
-                            `${styles.menuItem} ` +
-                            (pathname.startsWith(item.path) ? styles.active : '')
-                        }
-                    >
-                        {item.name}
-                    </button>
-                ))}
-            </div>
-            <button
-                className={`${styles.menuButton} ${isOpen ? styles.open : ''}`}
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Abrir menu"
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`${styles.menuItem} ${active ? styles.active : ''}`}
             >
-                <span className={styles.hamburger}></span>
-                <span className={styles.hamburger}></span>
-            </button>
-            {isOpen && (
-                <div className={styles.menuMobile}>
-                    {menuItems.map((item) => (
-                        item.name == 'CV' ? (
-                            <></>
-                        ) : (
-                            <button
-                                key={item.path}
-                                onClick={() => handleNavigation(item.path)}
-                                className={styles.menuItem}
-
-                            >
-                                {item.name}
-                            </button>
-                        )
-                    ))}
-                </div>
-            )}
-        </nav>
-    );
+              {item.name}
+            </Link>
+          );
+        })}
+      </div>
+      <button
+        className={`${styles.menuButton} ${isOpen ? styles.open : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+        aria-expanded={isOpen}
+      >
+        <span className={styles.hamburger}></span>
+        <span className={styles.hamburger}></span>
+      </button>
+      {isOpen && (
+        <div className={styles.menuMobile}>
+          {menuItems.map((item) => (
+            item.external ? (
+              <a
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.menuItem}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={styles.menuItem}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            )
+          ))}
+        </div>
+      )}
+    </nav>
+  );
 }
